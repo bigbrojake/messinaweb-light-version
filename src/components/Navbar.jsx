@@ -28,9 +28,10 @@ const navLinks = [
     path: '/services',
     label: 'Services',
     sections: [
-      { key: 'catalog',     label: 'Service Catalog' },
-      { key: 'terminal',    label: 'Tech Stack'      },
-      { key: 'methodology', label: 'MTS Methodology' },
+      { key: 'catalog',     label: 'Service Catalog'   },
+      { key: 'techstack',   label: 'Tech Stack'        },
+      { key: 'staffing',    label: 'Resource Staffing' },
+      { key: 'methodology', label: 'MTS Methodology'   },
     ],
   },
   {
