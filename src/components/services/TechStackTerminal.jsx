@@ -43,7 +43,7 @@ export default function TechStackTerminal() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 px-6 w-full flex justify-center bg-background">
+    <section ref={containerRef} className="py-24 px-6 w-full flex justify-center">
       <div className="w-full max-w-4xl bg-[#0d1117] rounded-xl overflow-hidden shadow-2xl border border-gray-800 flex flex-col">
         {/* Terminal header */}
         <div className="flex items-center gap-2 px-4 py-3 bg-[#161b22] border-b border-gray-800">

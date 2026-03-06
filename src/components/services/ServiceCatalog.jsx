@@ -36,7 +36,6 @@ export default function ServiceCatalog() {
   const [activeTab, setActiveTab] = useState(0);
   const contentRef = useRef(null);
 
-  // GSAP tab transition (replaces broken animate-fade-in CSS)
   useEffect(() => {
     if (!contentRef.current) return;
     const ctx = gsap.context(() => {
@@ -55,7 +54,7 @@ export default function ServiceCatalog() {
         <h1 className="text-sm font-mono tracking-widest uppercase text-accent font-semibold mb-4">
           Capability Matrix
         </h1>
-        <h2 className="text-4xl md:text-6xl font-heading font-bold text-primary">Summary of Services</h2>
+        <h2 className="text-4xl md:text-6xl font-heading font-bold text-textDark">Summary of Services</h2>
       </div>
 
       <div className="flex flex-col md:flex-row gap-12 items-start mt-16">
@@ -83,15 +82,15 @@ export default function ServiceCatalog() {
         </div>
 
         {/* Content area */}
-        <div className="w-full md:w-2/3 min-h-[400px] bg-white rounded-[3rem] p-10 md:p-16 shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-gray-100 relative overflow-hidden">
+        <div className="w-full md:w-2/3 min-h-[400px] bg-white rounded-[3rem] p-10 md:p-16 border border-gray-100 shadow-sm relative overflow-hidden">
           {/* Decorative SVG */}
           <div className="absolute top-0 right-0 p-8 text-gray-100">
             <LayoutTemplate size={120} strokeWidth={1} />
           </div>
 
           <div ref={contentRef} className="relative z-10 flex flex-col h-full justify-center">
-            <h3 className="text-3xl font-heading font-bold text-primary mb-6">{services[activeTab].title}</h3>
-            <p className="text-lg text-gray-600 font-body mb-8 leading-relaxed max-w-xl">
+            <h3 className="text-3xl font-heading font-bold text-textDark mb-6">{services[activeTab].title}</h3>
+            <p className="text-lg text-gray-500 font-body mb-8 leading-relaxed max-w-xl">
               {services[activeTab].content}
             </p>
 

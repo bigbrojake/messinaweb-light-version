@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import GlobalCanvas from './components/GlobalCanvas';
+import SectionNav from './components/SectionNav';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -12,7 +14,8 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="relative min-h-screen flex flex-col font-body">
+      <GlobalCanvas />
+      <div className="min-h-screen flex flex-col font-body">
         <Navbar />
         <main className="flex-grow">
           <Routes>
@@ -25,6 +28,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <SectionNav />
     </BrowserRouter>
   );
 }

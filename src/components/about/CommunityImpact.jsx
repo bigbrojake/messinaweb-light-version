@@ -37,14 +37,14 @@ export default function CommunityImpact() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative py-32 w-full overflow-hidden bg-white z-10">
+    <section ref={containerRef} className="relative py-32 w-full overflow-hidden z-10 bg-[#EEF3FB]">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div className="community-image relative aspect-square md:aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl">
+        <div className="community-image relative aspect-square md:aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl border border-gray-200">
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] hover:scale-110 ease-out"
             style={{
               backgroundImage:
-                'url("https://images.unsplash.com/photo-1593113565694-c6aa89f4facd?q=80&w=2070&auto=format&fit=crop")',
+                'url("https://images.unsplash.com/photo-1593113565694-c6aa89f4facd?q=70&w=800&auto=format&fit=crop")',
             }}
           />
           <div className="absolute inset-0 bg-accent/20 mix-blend-multiply" />
@@ -54,7 +54,7 @@ export default function CommunityImpact() {
           <h2 className="text-sm font-mono tracking-widest uppercase text-accent font-semibold">
             Community Impact
           </h2>
-          <h3 className="text-3xl md:text-5xl font-heading font-bold text-primary leading-tight">
+          <h3 className="text-3xl md:text-5xl font-heading font-bold text-textDark leading-tight">
             Investing in the Local Fabric.
           </h3>
           <p className="font-body text-gray-600 text-lg leading-relaxed">

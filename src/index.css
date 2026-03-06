@@ -9,7 +9,12 @@
   }
 
   body {
-    @apply bg-background text-textDark font-body;
+    @apply text-textDark font-body;
+    background: transparent;
+  }
+
+  html {
+    background: #ffffff;
   }
 }
 
@@ -20,7 +25,7 @@ body::after {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.048;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -32,12 +37,23 @@ body::after {
 /* ── Magnetic Button Base ── */
 .magnetic-btn {
   @apply relative overflow-hidden cursor-pointer;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
               box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .magnetic-btn:hover {
-  transform: scale(1.03) translateY(-1px);
+  transform: scale(1.04) translateY(-2px);
+  box-shadow: 0 12px 40px rgba(10,52,138,0.20), 0 4px 12px rgba(30,196,247,0.22);
+}
+
+/* ── Card Inertia (spring lift on hover) ── */
+.card-inertia {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-inertia:hover {
+  transform: translateY(-4px) scale(1.01);
 }
 
 /* ── Partner Marquee Animation ── */
@@ -54,6 +70,28 @@ body::after {
   animation: marquee-scroll 40s linear infinite;
 }
 
+/* ── Methodology Phase Visual Animations ── */
+@keyframes meth-outer-pulse {
+  0%, 100% { opacity: 0.22; transform: scale(1); }
+  50%       { opacity: 0.07; transform: scale(1.10); }
+}
+@keyframes meth-bar-breathe {
+  0%, 100% { opacity: 0.42; }
+  50%       { opacity: 0.82; }
+}
+@keyframes meth-node-light {
+  0%, 100% { opacity: 0.18; }
+  50%       { opacity: 0.95; }
+}
+@keyframes meth-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes meth-draw-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 /* ── Scrollbar Styling ── */
 ::-webkit-scrollbar {
   width: 8px;
@@ -64,10 +102,10 @@ body::after {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #0A348A;
 }

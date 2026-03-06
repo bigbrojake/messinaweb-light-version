@@ -38,9 +38,9 @@ export default function ContactProtocol() {
 
   return (
     <section ref={containerRef} className="py-24 px-6 max-w-5xl mx-auto w-full relative z-20">
-      <div className="bg-white rounded-[3rem] p-10 md:p-16 shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div className="bg-white rounded-[3rem] p-10 md:p-16 border border-primary/10 shadow-[0_8px_48px_rgba(10,52,138,0.10)] grid grid-cols-1 md:grid-cols-2 gap-16">
         <div className="form-element flex flex-col gap-6">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold text-textDark">
             Get In
             <br />
             Touch
@@ -63,8 +63,8 @@ export default function ContactProtocol() {
         <div className="w-full">
           {status === 'success' ? (
             <div className="h-full flex flex-col items-center justify-center text-center gap-4 py-12">
-              <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center mb-4">
-                <CheckCircle className="text-green-500" size={40} />
+              <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+                <CheckCircle className="text-accent" size={40} />
               </div>
               <h3 className="text-2xl font-heading font-bold text-textDark">Transmission Successful</h3>
               <p className="text-gray-500 font-body">Our team will review your inquiry and respond shortly.</p>
@@ -82,7 +82,7 @@ export default function ContactProtocol() {
                   type="text"
                   id="name"
                   required
-                  className="peer w-full bg-transparent border-b-2 border-gray-200 py-3 text-textDark focus:outline-none focus:border-accent transition-colors placeholder-transparent"
+                  className="peer w-full bg-transparent border-b-2 border-gray-300 py-3 text-textDark focus:outline-none focus:border-accent transition-colors placeholder-transparent"
                   placeholder="Name"
                 />
                 <label
@@ -98,7 +98,7 @@ export default function ContactProtocol() {
                   type="email"
                   id="email"
                   required
-                  className="peer w-full bg-transparent border-b-2 border-gray-200 py-3 text-textDark focus:outline-none focus:border-accent transition-colors placeholder-transparent"
+                  className="peer w-full bg-transparent border-b-2 border-gray-300 py-3 text-textDark focus:outline-none focus:border-accent transition-colors placeholder-transparent"
                   placeholder="Email"
                 />
                 <label
@@ -114,7 +114,7 @@ export default function ContactProtocol() {
                   id="intent"
                   required
                   defaultValue=""
-                  className="peer w-full bg-transparent border-b-2 border-gray-200 py-3 text-textDark focus:outline-none focus:border-accent transition-colors appearance-none"
+                  className="peer w-full bg-transparent border-b-2 border-gray-300 py-3 text-textDark focus:outline-none focus:border-accent transition-colors appearance-none [&>option]:bg-white [&>option]:text-textDark"
                 >
                   <option value="" disabled hidden />
                   <option value="client">I need resources / consulting</option>
@@ -134,7 +134,7 @@ export default function ContactProtocol() {
                   id="message"
                   required
                   rows="3"
-                  className="peer w-full bg-transparent border-b-2 border-gray-200 py-3 text-textDark focus:outline-none focus:border-accent transition-colors placeholder-transparent resize-none"
+                  className="peer w-full bg-transparent border-b-2 border-gray-300 py-3 text-textDark focus:outline-none focus:border-accent transition-colors placeholder-transparent resize-none"
                   placeholder="Message"
                 />
                 <label

@@ -49,7 +49,7 @@ export default function RoiDashboard() {
         <h1 className="text-sm font-mono tracking-widest uppercase text-accent font-semibold mb-4">
           The Impact Archive
         </h1>
-        <h2 className="text-5xl md:text-7xl font-heading font-black text-primary uppercase tracking-tighter">
+        <h2 className="text-5xl md:text-7xl font-heading font-black text-textDark uppercase tracking-tighter">
           ROI Dashboards
         </h2>
       </div>
@@ -58,8 +58,9 @@ export default function RoiDashboard() {
         {metrics.map((m, i) => (
           <div
             key={i}
-            className="metric-card bg-textDark text-white p-12 rounded-[3rem] text-center flex flex-col items-center justify-center shadow-2xl opacity-0"
+            className="metric-card relative bg-white text-textDark p-12 rounded-[3rem] text-center flex flex-col items-center justify-center border border-gray-100 shadow-[0_4px_32px_rgba(10,52,138,0.08)] hover:shadow-[0_8px_48px_rgba(10,52,138,0.14)] transition-shadow duration-500 opacity-0 overflow-hidden"
           >
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary/60 rounded-t-[3rem]" />
             <div
               className="flex items-baseline mb-4 font-heading font-bold overflow-hidden"
               style={{ minHeight: '80px' }}

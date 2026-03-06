@@ -1,8 +1,8 @@
 export default function GlobalReachMap() {
   return (
-    <section className="py-24 w-full bg-textDark relative overflow-hidden -mt-24 pt-48">
+    <section className="py-24 w-full relative overflow-hidden -mt-24 pt-48">
       <div className="max-w-7xl mx-auto px-6 text-center mb-16 relative z-10">
-        <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-4">
+        <h2 className="text-3xl md:text-5xl font-heading font-bold text-textDark mb-4">
           Global Reach. Local Precision.
         </h2>
         <p className="text-gray-400 font-body max-w-2xl mx-auto">
@@ -14,39 +14,39 @@ export default function GlobalReachMap() {
         {/* Abstract stylized world map SVG */}
         <svg
           viewBox="0 0 1000 400"
-          className="w-full h-full drop-shadow-2xl opacity-40 mix-blend-screen"
+          className="w-full h-full drop-shadow-2xl opacity-70"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* North America */}
           <path
             d="M150 100 Q180 80 200 120 T250 150 T280 200 T220 250 T180 220 T150 180 Z"
-            fill="#333333"
-            stroke="#555555"
+            fill="#CBD5E1"
+            stroke="#94A3B8"
             strokeWidth="2"
             strokeDasharray="4 4"
           />
           {/* South America */}
           <path
             d="M260 220 Q290 250 300 300 T280 380 T240 330 Z"
-            fill="#222222"
-            stroke="#444444"
+            fill="#E2E8F0"
+            stroke="#94A3B8"
             strokeWidth="2"
             strokeDasharray="4 4"
           />
           {/* Europe / Asia */}
           <path
             d="M450 80 Q500 50 600 80 T750 120 T800 200 T650 250 T550 180 T480 150 Z"
-            fill="#333333"
-            stroke="#555555"
+            fill="#CBD5E1"
+            stroke="#94A3B8"
             strokeWidth="2"
             strokeDasharray="4 4"
           />
           {/* Africa */}
           <path
             d="M480 180 Q520 200 550 250 T530 350 T450 300 Z"
-            fill="#222222"
-            stroke="#444444"
+            fill="#E2E8F0"
+            stroke="#94A3B8"
             strokeWidth="2"
             strokeDasharray="4 4"
           />
@@ -67,8 +67,8 @@ export default function GlobalReachMap() {
           <div className="absolute w-12 h-12 bg-accent/40 rounded-full animate-pulse" />
           <div className="w-3 h-3 bg-accent rounded-full border-2 border-white relative z-10 shadow-[0_0_15px_#1EC4F7]" />
 
-          <div className="absolute top-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 backdrop-blur-sm border border-gray-800 px-3 py-1.5 rounded-md mt-2">
-            <span className="font-mono text-xs text-white uppercase tracking-widest font-bold">
+          <div className="absolute top-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white/90 backdrop-blur-sm border border-gray-200 px-3 py-1.5 rounded-md mt-2">
+            <span className="font-mono text-xs text-textDark uppercase tracking-widest font-bold">
               Newburyport HQ
             </span>
           </div>
@@ -82,8 +82,8 @@ export default function GlobalReachMap() {
           />
           <div className="w-2.5 h-2.5 bg-primary rounded-full border border-white relative z-10 shadow-[0_0_10px_#0A348A]" />
 
-          <div className="absolute top-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 backdrop-blur-sm border border-gray-800 px-3 py-1.5 rounded-md mt-2">
-            <span className="font-mono text-xs text-gray-300 uppercase tracking-widest font-bold">
+          <div className="absolute top-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white/90 backdrop-blur-sm border border-gray-200 px-3 py-1.5 rounded-md mt-2">
+            <span className="font-mono text-xs text-textDark uppercase tracking-widest font-bold">
               Offshore Hub
             </span>
           </div>

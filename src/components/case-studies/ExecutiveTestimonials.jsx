@@ -31,12 +31,12 @@ export default function ExecutiveTestimonials() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 px-6 w-full bg-textDark relative z-20 mt-24">
+    <section ref={containerRef} className="py-32 px-6 w-full relative z-20 mt-24 bg-[#EEF3FB]">
       <div className="max-w-4xl mx-auto flex flex-col gap-32 text-center">
         <div className="quote-element flex flex-col gap-6">
           <span className="text-6xl text-accent font-serif opacity-50 block mb-[-30px]">&ldquo;</span>
           <p
-            className="font-heading font-medium text-3xl md:text-5xl italic text-white leading-tight"
+            className="font-heading font-medium text-3xl md:text-5xl italic text-textDark leading-tight"
             style={{ fontWeight: 400 }}
           >
             MTS executed our environment transition smoothly; their deep understanding of redundant architecture
@@ -53,7 +53,7 @@ export default function ExecutiveTestimonials() {
         <div className="quote-element flex flex-col gap-6">
           <span className="text-6xl text-accent font-serif opacity-50 block mb-[-30px]">&ldquo;</span>
           <p
-            className="font-heading font-medium text-3xl md:text-5xl italic text-white leading-tight"
+            className="font-heading font-medium text-3xl md:text-5xl italic text-textDark leading-tight"
             style={{ fontWeight: 400 }}
           >
             The level of precision in their automation rollout saved our engineering team thousands of hours. It

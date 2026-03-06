@@ -65,21 +65,21 @@ export default function CaseStudyGrids() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
         {studies.map((study, i) => (
           <div key={i} className="study-card group flex flex-col gap-6 cursor-pointer">
-            <div className="w-full aspect-video rounded-[2rem] overflow-hidden relative shadow-lg">
+            <div className="w-full aspect-video rounded-[2rem] overflow-hidden relative shadow-brand-md hover:shadow-brand-lg border border-gray-100 card-inertia">
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-magnetic group-hover:scale-105"
                 style={{ backgroundImage: `url("${study.img}")` }}
               />
               <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-40 mix-blend-multiply transition-opacity duration-500" />
-              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full font-mono text-xs font-bold text-primary shadow-sm tracking-widest uppercase">
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full font-mono text-xs font-bold text-textDark shadow-sm tracking-widest uppercase border border-gray-200">
                 {study.industry}
               </div>
             </div>
 
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-heading font-bold text-primary">{study.title}</h3>
-                <div className="w-10 h-10 rounded-full bg-surface border border-gray-200 flex items-center justify-center -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
+                <h3 className="text-2xl font-heading font-bold text-textDark">{study.title}</h3>
+                <div className="w-10 h-10 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
                   <ArrowRight size={20} className="text-accent" />
                 </div>
               </div>
