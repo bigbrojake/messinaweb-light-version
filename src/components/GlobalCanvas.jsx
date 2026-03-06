@@ -21,8 +21,8 @@ function initNet(w, h) {
     const isHub = i < HUB_N;
     return {
       x: Math.random() * w, y: Math.random() * h,
-      vx: (Math.random() - 0.5) * (isHub ? 0.0235 : 0.0435),
-      vy: (Math.random() - 0.5) * (isHub ? 0.020 : 0.0335),
+      vx: (Math.random() - 0.5) * (isHub ? 0.0353 : 0.0653),
+      vy: (Math.random() - 0.5) * (isHub ? 0.030 : 0.0503),
       radius: isHub ? 6.25 + Math.random() * 3.75 : 1.75 + Math.random() * 2.25,
       color: isHub ? ACCENT : PRIMARY,
       phase: Math.random() * Math.PI * 2,
@@ -37,7 +37,7 @@ function initMicro(w, h) {
     const bright = i % 4 === 0;
     return {
       x: Math.random() * w, y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.0125, vy: (Math.random() - 0.5) * 0.010,
+      vx: (Math.random() - 0.5) * 0.01875, vy: (Math.random() - 0.5) * 0.015,
       radius: bright ? 1.875 + Math.random() * 1.375 : 0.6875 + Math.random() * 1.0625,
       alpha:  bright ? 0.16 + Math.random() * 0.12 : 0.05 + Math.random() * 0.09,
       color: Math.random() > 0.55 ? ACCENT : PRIMARY,
@@ -57,7 +57,7 @@ function initPkts(edges) {
   return Array.from({ length: PKT_N }, () => ({
     ei: Math.floor(Math.random() * Math.max(edges.length, 1)),
     t: Math.random(),
-    speed: 0.00027 + Math.random() * 0.000335,
+    speed: 0.000405 + Math.random() * 0.000503,
   }));
 }
 

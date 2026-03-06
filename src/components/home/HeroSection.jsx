@@ -28,8 +28,8 @@ function initNetwork(w, h) {
     return {
       x:      Math.random() * w,
       y:      Math.random() * h,
-      vx:     (Math.random() - 0.5) * (isHub ? 0.11 : 0.19),
-      vy:     (Math.random() - 0.5) * (isHub ? 0.09 : 0.15),
+      vx:     (Math.random() - 0.5) * (isHub ? 0.0825 : 0.1425),
+      vy:     (Math.random() - 0.5) * (isHub ? 0.0675 : 0.1125),
       depth:  0.3 + Math.random() * 0.7,
       radius: isHub ? 6 + Math.random() * 4 : 1.8 + Math.random() * 2.2,
       color:  isHub ? ACCENT : PRIMARY,
@@ -47,8 +47,8 @@ function initMicro(w, h) {
     return {
       x:      Math.random() * w,
       y:      Math.random() * h,
-      vx:     (Math.random() - 0.5) * 0.062,
-      vy:     (Math.random() - 0.5) * 0.048,
+      vx:     (Math.random() - 0.5) * 0.0465,
+      vy:     (Math.random() - 0.5) * 0.036,
       radius: bright ? 2.2 + Math.random() * 1.8 : 0.8 + Math.random() * 1.2,
       alpha:  bright ? 0.32 + Math.random() * 0.22 : 0.10 + Math.random() * 0.16,
       color:  isAccent ? ACCENT : PRIMARY,
@@ -70,7 +70,7 @@ function initPackets(edges) {
   return Array.from({ length: PACKET_N }, () => ({
     ei:    Math.floor(Math.random() * Math.max(edges.length, 1)),
     t:     Math.random(),
-    speed: 0.0014 + Math.random() * 0.0016,
+    speed: 0.00105 + Math.random() * 0.0012,
   }));
 }
 
