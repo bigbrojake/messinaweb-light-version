@@ -46,7 +46,7 @@ export default function Manifesto() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden bg-white/10 backdrop-blur-2xl"
+      className="relative w-full overflow-hidden"
     >
       {/* Left brand bar */}
       <div className="absolute top-0 left-0 w-[3px] h-full bg-gradient-to-b from-accent via-primary to-primary/20" />

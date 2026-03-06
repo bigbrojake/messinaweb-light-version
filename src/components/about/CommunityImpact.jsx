@@ -37,7 +37,7 @@ export default function CommunityImpact() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative py-32 w-full overflow-hidden z-10 bg-[#EEF3FB]">
+    <section ref={containerRef} className="relative py-32 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div className="community-image relative aspect-square md:aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl border border-gray-200">
           <div
