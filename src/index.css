@@ -13,9 +13,53 @@
     background: transparent;
   }
 
+  /* Strong viewport-fixed gradient base — always visible beneath all content.
+     background-attachment: fixed pins it to the viewport so it reveals as
+     a backlight rather than scrolling with the page.                          */
   html {
-    background: #ffffff;
+    background:
+      radial-gradient(ellipse 80% 55% at 88% 5%,    rgba(30,196,247,0.52) 0%, transparent 58%),
+      radial-gradient(ellipse 65% 50% at 8%  92%,    rgba(10,52,138,0.35)  0%, transparent 58%),
+      radial-gradient(ellipse 55% 48% at 50% 50%,    rgba(30,196,247,0.29) 0%, transparent 58%),
+      radial-gradient(ellipse 50% 44% at 25% 20%,    rgba(13,92,168,0.35)  0%, transparent 55%),
+      radial-gradient(ellipse 70% 45% at 72% 78%,    rgba(30,196,247,0.26) 0%, transparent 52%),
+      radial-gradient(ellipse 42% 38% at 15% 62%,    rgba(13,92,168,0.28)  0%, transparent 50%),
+      #eef4ff;
+    background-attachment: fixed;
   }
+}
+
+/* ── Sitewide Gradient Layer ── */
+/* Fixed behind everything. Sections without an explicit bg show this tint.
+   Breathes + drifts slowly so the whole site feels alive, not static.
+   translate (individual property) composes with the animation transform —
+   JS updates --sb-tx/--sb-ty on scroll for a parallax nudge.             */
+/* Animated breathing layer — composites on top of the html gradient base.
+   Positions match the html background exactly (inset: 0, same % coords)
+   so they reinforce each other and animate coherently.                    */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 55% at 88% 5%,    rgba(30,196,247,0.22) 0%, transparent 58%),
+    radial-gradient(ellipse 65% 50% at 8%  92%,    rgba(10,52,138,0.18)  0%, transparent 58%),
+    radial-gradient(ellipse 55% 48% at 50% 50%,    rgba(30,196,247,0.14) 0%, transparent 58%),
+    radial-gradient(ellipse 50% 44% at 25% 20%,    rgba(13,92,168,0.18)  0%, transparent 55%),
+    radial-gradient(ellipse 70% 45% at 72% 78%,    rgba(30,196,247,0.12) 0%, transparent 52%),
+    radial-gradient(ellipse 42% 38% at 15% 62%,    rgba(13,92,168,0.14)  0%, transparent 50%);
+  animation: site-breathe 26s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+  translate: var(--sb-tx, 0px) var(--sb-ty, 0px);
+}
+
+@keyframes site-breathe {
+  0%   { opacity: 0.60; transform: scale(1.00) translate(0px,    0px); }
+  30%  { opacity: 0.88; transform: scale(1.06) translate(-18px,  12px); }
+  65%  { opacity: 1.00; transform: scale(1.10) translate( 12px, -16px); }
+  100% { opacity: 0.72; transform: scale(1.14) translate(-8px,   20px); }
 }
 
 /* ── Global Noise Overlay ── */
@@ -90,6 +134,66 @@ body::after {
 @keyframes meth-draw-in {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+/* ── Hero Gradient Background ── */
+/* Layered radials on a navy base. Cyan floods the upper 2/3 of the hero,
+   navy anchors the bottom-left text zone. Two animated pseudo-elements
+   (::before + ::after) drift on different cycles for a fluid organic feel. */
+.hero-gradient-bg {
+  background:
+    /* Dominant cyan wash — wide, floods upper area */
+    radial-gradient(ellipse 125% 90% at 68% 0%,   rgba(30,196,247,0.88)  0%, rgba(30,196,247,0) 54%),
+    /* Centre-mass cyan — keeps colour integrated, not corner-only */
+    radial-gradient(ellipse 75% 65% at 38% 32%,   rgba(30,196,247,0.28)  0%, transparent 56%),
+    /* Right ice-blue softener */
+    radial-gradient(ellipse 58% 52% at 105% 62%,  rgba(168,233,250,0.38) 0%, transparent 52%),
+    /* Left navy anchor — keeps text zone readable */
+    radial-gradient(ellipse 58% 72% at -4% 62%,   rgba(5,18,72,0.50)     0%, transparent 56%),
+    /* Bottom navy bleed — matches TrustAwards bg so the join is seamless */
+    radial-gradient(ellipse 145% 48% at 50% 116%, rgba(10,52,138,0.45) 0%, transparent 60%),
+    /* Base — mid-range navy, not black */
+    linear-gradient(148deg, #0C2F7E 0%, #0A348A 48%, #1358AC 100%);
+}
+
+/* Drift layer A — slow translate + subtle opacity pulse */
+.hero-gradient-bg::before {
+  content: '';
+  position: absolute;
+  inset: -18%;
+  background:
+    radial-gradient(ellipse 68% 58% at 62% 14%, rgba(30,196,247,0.32) 0%, transparent 55%),
+    radial-gradient(ellipse 48% 42% at 25% 78%, rgba(10,52,138,0.20)  0%, transparent 50%);
+  animation: hero-drift-a 22s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform, opacity;
+}
+
+/* Drift layer B — different speed + direction for organic feel */
+.hero-gradient-bg::after {
+  content: '';
+  position: absolute;
+  inset: -12%;
+  background:
+    radial-gradient(ellipse 52% 48% at 82% 38%, rgba(168,233,250,0.24) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 38% at 42% 88%, rgba(30,196,247,0.16)  0%, transparent 50%);
+  animation: hero-drift-b 16s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+  z-index: 2;
+  will-change: transform, opacity;
+}
+
+@keyframes hero-drift-a {
+  0%   { transform: translate(0px,   0px)   scale(1.00); opacity: 0.78; }
+  40%  { transform: translate(24px, -16px)  scale(1.06); opacity: 1.00; }
+  100% { transform: translate(-10px, 22px)  scale(0.95); opacity: 0.82; }
+}
+
+@keyframes hero-drift-b {
+  0%   { transform: translate(0px,   0px)   scale(1.00); opacity: 0.65; }
+  50%  { transform: translate(-18px, 12px)  scale(1.05); opacity: 0.92; }
+  100% { transform: translate(14px,  -9px)  scale(0.97); opacity: 0.70; }
 }
 
 /* ── Scrollbar Styling ── */

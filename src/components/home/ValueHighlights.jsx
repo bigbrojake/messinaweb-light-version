@@ -10,7 +10,7 @@ const highlights = [
     Icon: Target,
     stat: '100%',
     title: 'Tailored Solutions',
-    desc: 'We customize our services to fit your unique hiring needs with precision.',
+    desc: 'We customize our services to fit your unique needs with precision.',
     tag: 'Scope',
   },
   {
@@ -24,7 +24,7 @@ const highlights = [
     Icon: ShieldCheck,
     stat: '25+',
     title: 'Years of Experience',
-    desc: 'With over 25 years, we excel in talent solutions that drive your success.',
+    desc: 'With over 25 years, we excel in solutions that drive your success.',
     tag: 'Expertise',
   },
 ];
@@ -61,7 +61,7 @@ export default function ValueHighlights() {
           return (
             <div
               key={i}
-              className="vh-card group relative bg-white rounded-[2rem] border border-primary/8 shadow-brand hover:shadow-brand-lg card-inertia overflow-hidden"
+              className="vh-card group relative bg-white/80 backdrop-blur-sm rounded-[2rem] border border-primary/8 shadow-brand hover:shadow-brand-lg card-inertia overflow-hidden"
             >
               {/* Gradient accent stripe */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-accent to-primary/40 rounded-t-[2rem]" />

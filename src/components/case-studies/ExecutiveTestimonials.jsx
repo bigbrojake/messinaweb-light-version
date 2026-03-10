@@ -31,7 +31,7 @@ export default function ExecutiveTestimonials() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 px-6 w-full relative z-20 mt-24 bg-[#EEF3FB]">
+    <section ref={containerRef} className="py-32 px-6 w-full relative z-20 mt-24" style={{ background: 'linear-gradient(160deg, #EEF3FB 0%, rgba(30,196,247,0.06) 50%, #F8FAFC 100%)' }}>
       <div className="max-w-4xl mx-auto flex flex-col gap-32 text-center">
         <div className="quote-element flex flex-col gap-6">
           <span className="text-6xl text-accent font-serif opacity-50 block mb-[-30px]">&ldquo;</span>

@@ -139,17 +139,6 @@ export default function CoreValues() {
           })}
         </div>
 
-        {/* Footer stat bar */}
-        <div className="mt-16 pt-10 border-t border-white/[0.08] grid grid-cols-3 gap-6">
-          {['25+ Years', '100% Custom', 'Always On'].map((label, i) => (
-            <div key={i} className="text-center">
-              <p className="font-heading font-black text-2xl md:text-3xl text-white">{label}</p>
-              <p className="font-mono text-[10px] text-white/30 tracking-widest uppercase mt-1">
-                {['Deep Experience', 'Tailored Scope', 'True Partnership'][i]}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

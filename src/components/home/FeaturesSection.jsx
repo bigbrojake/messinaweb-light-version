@@ -189,7 +189,7 @@ function TelemetryTypewriter() {
       </div>
 
       <p className="text-[13px] text-white/30 font-body mb-5 leading-relaxed">
-        Turnkey, results-driven solutions powered by measurable automated telemetry.
+        [Placeholder — outcome-based delivery copy coming soon.]
       </p>
 
       {/* Terminal */}

@@ -38,7 +38,8 @@ export default function ContactProtocol() {
 
   return (
     <section ref={containerRef} className="py-24 px-6 max-w-5xl mx-auto w-full relative z-20">
-      <div className="bg-white rounded-[3rem] p-10 md:p-16 border border-primary/10 shadow-[0_8px_48px_rgba(10,52,138,0.10)] grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div className="relative bg-white rounded-[3rem] p-10 md:p-16 border border-primary/10 shadow-[0_8px_48px_rgba(10,52,138,0.10)] grid grid-cols-1 md:grid-cols-2 gap-16 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-accent to-primary/40 rounded-t-[3rem]" />
         <div className="form-element flex flex-col gap-6">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-textDark">
             Get In

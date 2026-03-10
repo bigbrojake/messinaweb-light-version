@@ -9,8 +9,8 @@ const navLinks = [
     sections: [
       { key: 'hero',       label: 'Home Overview'       },
       { key: 'trust',      label: 'Awards & Recognition' },
-      { key: 'highlights', label: 'Why Choose MTS'      },
-      { key: 'features',   label: 'Core Pillars'        },
+      { key: 'features',   label: 'What We Deliver'     },
+      { key: 'highlights', label: 'Our Principles'      },
       { key: 'partners',   label: 'Partner Ecosystem'   },
     ],
   },
@@ -20,8 +20,8 @@ const navLinks = [
     sections: [
       { key: 'mission',    label: 'Our Mission'     },
       { key: 'team',       label: 'Meet the Team'  },
+      { key: 'pillars',    label: 'Core Pillars'   },
       { key: 'community',  label: 'Community'      },
-      { key: 'values',     label: 'Core Values'    },
     ],
   },
   {
@@ -38,8 +38,8 @@ const navLinks = [
     path: '/case-studies',
     label: 'Case Studies',
     sections: [
-      { key: 'roi',          label: 'ROI Dashboard' },
       { key: 'grids',        label: 'Case Studies'  },
+      { key: 'roi',          label: 'ROI Dashboard' },
       { key: 'testimonials', label: 'Testimonials'  },
     ],
   },
@@ -57,13 +57,17 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [scrolled, setScrolled]         = useState(false);
+  const [pastHero, setPastHero]         = useState(false);
   const [mobileOpen, setMobileOpen]     = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState(null);
   const closeTimer = useRef(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60);
+      setPastHero(window.scrollY > window.innerHeight * 0.85);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
@@ -101,19 +105,24 @@ export default function Navbar() {
     }
   }
 
+  // Only use transparent glass treatment on the home page hero
+  const onHeroGradient = location.pathname === '/' && !pastHero;
+
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-4 py-4 flex justify-center pointer-events-none">
       <nav
         className={`pointer-events-auto flex items-center justify-between px-7 py-3.5 rounded-[3rem] transition-all duration-500 ease-magnetic w-full max-w-5xl ${
-          scrolled
-            ? 'bg-white/95 backdrop-blur-2xl border border-gray-200/80 shadow-[0_4px_32px_rgba(10,52,138,0.10),0_0_0_1px_rgba(10,52,138,0.04)]'
-            : 'bg-white/88 backdrop-blur-xl border border-primary/10 shadow-[0_2px_24px_rgba(10,52,138,0.08)]'
+          onHeroGradient
+            ? 'bg-white/10 backdrop-blur-md border border-white/18 shadow-none'
+            : scrolled
+              ? 'bg-white/95 backdrop-blur-2xl border border-gray-200/80 shadow-[0_4px_32px_rgba(10,52,138,0.10),0_0_0_1px_rgba(10,52,138,0.04)]'
+              : 'bg-white/88 backdrop-blur-xl border border-primary/10 shadow-[0_2px_24px_rgba(10,52,138,0.08)]'
         }`}
       >
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 shrink-0">
           <img src="/mts-logo.png" alt="Messina Technology Solutions" className="h-9 w-auto" />
-          <span className="text-base font-heading font-bold tracking-widest uppercase hidden sm:block text-primary">
+          <span className={`text-base font-heading font-bold tracking-widest uppercase hidden sm:block ${onHeroGradient ? 'text-white' : 'text-primary'}`}>
             MTS
           </span>
         </Link>
@@ -135,7 +144,9 @@ export default function Navbar() {
                 <Link
                   to={link.path}
                   className={`relative flex items-center gap-1 text-sm font-semibold transition-all duration-300 py-1 select-none ${
-                    active ? 'text-primary' : 'text-textDark/55 hover:text-textDark'
+                    active
+                      ? (onHeroGradient ? 'text-white' : 'text-primary')
+                      : (onHeroGradient ? 'text-white/70 hover:text-white' : 'text-textDark/55 hover:text-textDark')
                   }`}
                 >
                   {link.label}
@@ -199,7 +210,7 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 rounded-xl transition-colors text-textDark/60 hover:text-textDark"
+          className={`md:hidden p-2 rounded-xl transition-colors ${onHeroGradient ? 'text-white/70 hover:text-white' : 'text-textDark/60 hover:text-textDark'}`}
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}

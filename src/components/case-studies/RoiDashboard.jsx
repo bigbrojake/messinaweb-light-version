@@ -5,39 +5,26 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const metrics = [
-  { value: 11, label: 'Productivity Gain', prefix: '$', suffix: 'M', duration: 2.5 },
-  { value: 50, label: 'Downtime Reduction', prefix: '', suffix: '%', duration: 2.0 },
-  { value: 33, label: 'Cost Savings', prefix: '', suffix: '%', duration: 1.5 },
+  { label: 'Productivity Gain', prefix: '$', suffix: 'M' },
+  { label: 'Downtime Reduction', prefix: '', suffix: '%' },
+  { label: 'Cost Savings', prefix: '', suffix: '%' },
 ];
 
 export default function RoiDashboard() {
   const containerRef = useRef(null);
-  const metricRefs = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      metrics.forEach((metric, i) => {
-        const el = metricRefs.current[i];
-        if (!el) return;
-
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: 'top 75%',
-          onEnter: () => {
-            gsap.fromTo(
-              el.closest('.metric-card'),
-              { scale: 0.95, opacity: 0 },
-              { scale: 1, opacity: 1, duration: 0.7, delay: i * 0.12, ease: 'power3.out' }
-            );
-            gsap.to(el, {
-              innerText: metric.value,
-              duration: metric.duration,
-              snap: { innerText: 1 },
-              ease: 'power3.out',
-            });
-          },
-          once: true,
-        });
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: 'top 75%',
+        onEnter: () => {
+          gsap.fromTo('.metric-card',
+            { scale: 0.95, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power3.out' }
+          );
+        },
+        once: true,
       });
     }, containerRef);
     return () => ctx.revert();
@@ -62,16 +49,15 @@ export default function RoiDashboard() {
           >
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary/60 rounded-t-[3rem]" />
             <div
-              className="flex items-baseline mb-4 font-heading font-bold overflow-hidden"
+              className="flex items-baseline mb-4 font-heading font-bold"
               style={{ minHeight: '80px' }}
             >
-              <span className="text-4xl text-accent">{m.prefix}</span>
-              <span ref={(el) => (metricRefs.current[i] = el)} className="text-7xl md:text-8xl tracking-tighter">
-                0
-              </span>
-              <span className="text-5xl text-accent">{m.suffix}</span>
+              <span className="text-4xl text-accent/30">{m.prefix}</span>
+              <span className="text-7xl md:text-8xl tracking-tighter text-gray-200 select-none">—</span>
+              <span className="text-5xl text-accent/30">{m.suffix}</span>
             </div>
-            <h3 className="font-mono text-sm tracking-widest uppercase opacity-80">{m.label}</h3>
+            <h3 className="font-mono text-sm tracking-widest uppercase text-textDark/70">{m.label}</h3>
+            <p className="font-body text-xs text-gray-400 mt-2 tracking-wide">Data pending</p>
           </div>
         ))}
       </div>
