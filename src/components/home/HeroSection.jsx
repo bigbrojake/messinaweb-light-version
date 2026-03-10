@@ -36,7 +36,7 @@ export default function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="hero-gradient-bg relative h-[100dvh] w-full flex items-end pb-[32vh] lg:pb-[36vh] px-6"
+      className="hero-gradient-bg relative h-[100dvh] w-full flex items-end pb-[22vh] lg:pb-[26vh] px-6"
       style={{ overflow: 'clip' }}
     >
       {/* ── Depth vignette — adds navy weight to upper-left, protects text readability */}

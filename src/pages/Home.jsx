@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="w-full">
       <div data-nav-section="hero"><HeroSection /></div>
-      <div data-nav-section="trust"><TrustAwards /></div>
       <div data-nav-section="features"><ValueHighlights /></div>
+      <div data-nav-section="trust"><TrustAwards /></div>
       <div data-nav-section="highlights"><CoreValues /></div>
       <div data-nav-section="partners"><PartnerMarquee /></div>
     </div>
