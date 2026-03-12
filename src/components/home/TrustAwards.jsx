@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Award, Star, Shield, Trophy } from 'lucide-react';
+import { Award, Star, Shield, Trophy, TrendingUp } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +28,14 @@ const awards = [
     subtitle: 'Dell Technologies',
     icon: Trophy,
     desc: 'Latest recognition for outstanding consulting outcomes across energy, healthcare, and federal sectors.',
+    accent: false,
+  },
+  {
+    year: '2025',
+    title: 'Inc. 5000',
+    subtitle: 'Fastest-Growing Private Companies',
+    icon: TrendingUp,
+    desc: '#1401 in America · #35 in Massachusetts · #71 in IT Services.',
     accent: false,
   },
 ];
@@ -89,7 +97,7 @@ export default function TrustAwards() {
         </div>
 
         {/* Award cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {awards.map((a, i) => {
             const Icon = a.icon;
             return (

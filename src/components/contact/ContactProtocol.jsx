@@ -51,12 +51,6 @@ export default function ContactProtocol() {
             would love to hear from you.
           </p>
           <div className="mt-8 flex flex-col gap-4">
-            <a
-              href="mailto:info@messina-llc.com"
-              className="font-mono text-accent hover:text-primary transition-colors text-lg font-semibold"
-            >
-              info@messina-llc.com
-            </a>
             <p className="font-mono text-gray-400 text-sm">HQ: Newburyport, MA</p>
           </div>
         </div>

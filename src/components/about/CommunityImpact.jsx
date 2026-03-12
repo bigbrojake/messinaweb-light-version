@@ -63,6 +63,41 @@ export default function CommunityImpact() {
             realm and into the neighborhoods where we live and work.
           </p>
           <div className="w-16 h-1 mt-4 bg-accent rounded-full" />
+
+          <div className="mt-8 flex flex-col gap-6">
+            <div>
+              <p className="font-mono text-[10px] text-accent tracking-[0.2em] uppercase mb-3">Annual Sponsors</p>
+              <ul className="flex flex-col gap-1.5">
+                {[
+                  'Angel Fund for ALS Research — Squirrel Run 5K',
+                  'Newburyport Education Foundation Golf Tournament',
+                  "St. Jude Children's Hospital",
+                ].map((org, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-gray-600 font-body">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    {org}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="font-mono text-[10px] text-accent tracking-[0.2em] uppercase mb-3">Team Nonprofits</p>
+              <ul className="flex flex-col gap-1.5">
+                {[
+                  'UP for Women and Children — Louisville, KY',
+                  'Friends of MADACC — Milwaukee, WI',
+                  'United Way of Jackson County — Oregon',
+                  'Vanderburgh Humane Society — Indiana',
+                  'World Central Kitchen',
+                ].map((org, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-gray-600 font-body">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
+                    {org}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>

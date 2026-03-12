@@ -11,7 +11,7 @@ export default function Footer() {
             <h2 className="text-2xl font-heading font-bold text-white">MTS</h2>
           </div>
           <p className="text-sm text-white/60 font-body max-w-xs leading-relaxed">
-            Empower organizations through innovative IT consulting, flexible resource staffing, and results-driven service delivery.
+            Empowering organizations through innovative IT consulting, flexible resource staffing, and results-driven service delivery.
           </p>
         </div>
 
