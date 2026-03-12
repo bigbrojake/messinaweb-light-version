@@ -118,16 +118,18 @@ export default function Navbar() {
               : 'bg-white/88 backdrop-blur-xl border border-primary/10 shadow-[0_2px_24px_rgba(10,52,138,0.08)]'
         }`}
       >
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 shrink-0">
-          <img src="/mts-logo.png" alt="Messina Technology Solutions" className="h-9 w-auto" />
-          <span className={`text-base font-heading font-bold tracking-widest uppercase hidden sm:block ${onHeroGradient ? 'text-white' : 'text-primary'}`}>
-            MTS
-          </span>
-        </Link>
+        {/* Logo — flex-1 keeps it left while links stay centered */}
+        <div className="flex-1">
+          <Link to="/" className="flex items-center gap-3 w-fit">
+            <img src="/mts-logo.png" alt="Messina Technology Solutions" className="h-9 w-auto" />
+            <span className={`text-base font-heading font-bold tracking-widest uppercase hidden sm:block ${onHeroGradient ? 'text-white' : 'text-primary'}`}>
+              MTS
+            </span>
+          </Link>
+        </div>
 
-        {/* Desktop nav links with dropdowns */}
-        <div className="hidden md:flex items-center gap-6">
+        {/* Desktop nav links — centered by mx-auto */}
+        <div className="hidden md:flex items-center gap-6 mx-auto">
           {navLinks.map((link) => {
             const active = location.pathname === link.path;
             const open   = activeDropdown === link.path;
@@ -196,6 +198,9 @@ export default function Navbar() {
             );
           })}
         </div>
+
+        {/* Right spacer — balances logo on left so links stay truly centered */}
+        <div className="flex-1 hidden md:block" />
 
         {/* Mobile hamburger */}
         <button
