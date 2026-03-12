@@ -197,15 +197,6 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Desktop CTA */}
-        <Link
-          to="/contact"
-          className="hidden md:inline-flex magnetic-btn px-6 py-2.5 text-sm font-bold text-white bg-accent rounded-[2rem] items-center shadow-[0_0_20px_rgba(30,196,247,0.3)] border border-accent/40 shrink-0"
-        >
-          <span className="relative z-10">Get In Touch</span>
-          <span className="absolute inset-0 bg-white/15 rounded-[2rem] opacity-0 hover:opacity-100 transition-opacity duration-300 ease-out z-0" />
-        </Link>
-
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -275,14 +266,6 @@ export default function Navbar() {
             );
           })}
 
-          {/* Mobile CTA */}
-          <Link
-            to="/contact"
-            onClick={() => setMobileOpen(false)}
-            className="magnetic-btn mt-3 px-6 py-3 text-center text-base font-bold text-white bg-accent rounded-[2rem] shadow-[0_0_20px_rgba(30,196,247,0.25)]"
-          >
-            <span className="relative z-10">Get In Touch</span>
-          </Link>
         </div>
       </div>
     </header>
