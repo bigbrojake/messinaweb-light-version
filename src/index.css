@@ -13,55 +13,15 @@
     background: transparent;
   }
 
-  /* Strong viewport-fixed gradient base — always visible beneath all content.
-     background-attachment: fixed pins it to the viewport so it reveals as
-     a backlight rather than scrolling with the page.                          */
+  /* Dot grid: 1px navy dots on white, viewport-fixed so they don't scroll */
   html {
-    /* 4 corner-anchored ellipses push color evenly to all edges.
-       Very wide coverage (100–120%) prevents top-center pooling.
-       Warmer #f0f6ff base stops the "cold stain" feel.              */
     background:
-      radial-gradient(ellipse 110% 70% at  -5%   0%, rgba(13,92,168,0.28)  0%, transparent 60%),
-      radial-gradient(ellipse 110% 70% at 105%   0%, rgba(30,196,247,0.30) 0%, transparent 60%),
-      radial-gradient(ellipse 110% 70% at  -5% 100%, rgba(30,196,247,0.22) 0%, transparent 60%),
-      radial-gradient(ellipse 110% 70% at 105% 100%, rgba(13,92,168,0.25)  0%, transparent 60%),
-      radial-gradient(ellipse  70% 55% at  50%  50%, rgba(30,196,247,0.10) 0%, transparent 65%),
-      #f0f6ff;
-    background-attachment: fixed;
+      radial-gradient(circle, rgba(10,52,138,0.13) 1px, transparent 1px)
+      fixed center / 24px 24px,
+      #ffffff;
   }
 }
 
-/* ── Sitewide Gradient Layer ── */
-/* Fixed behind everything. Sections without an explicit bg show this tint.
-   Breathes + drifts slowly so the whole site feels alive, not static.
-   translate (individual property) composes with the animation transform —
-   JS updates --sb-tx/--sb-ty on scroll for a parallax nudge.             */
-/* Animated breathing layer — composites on top of the html gradient base.
-   Positions match the html background exactly (inset: 0, same % coords)
-   so they reinforce each other and animate coherently.                    */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 110% 70% at  -5%   0%, rgba(13,92,168,0.12)  0%, transparent 60%),
-    radial-gradient(ellipse 110% 70% at 105%   0%, rgba(30,196,247,0.13) 0%, transparent 60%),
-    radial-gradient(ellipse 110% 70% at  -5% 100%, rgba(30,196,247,0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 110% 70% at 105% 100%, rgba(13,92,168,0.11)  0%, transparent 60%),
-    radial-gradient(ellipse  70% 55% at  50%  50%, rgba(30,196,247,0.06) 0%, transparent 65%);
-  animation: site-breathe 26s ease-in-out infinite alternate;
-  will-change: transform, opacity;
-  translate: var(--sb-tx, 0px) var(--sb-ty, 0px);
-}
-
-@keyframes site-breathe {
-  0%   { opacity: 0.60; transform: scale(1.00) translate(0px,    0px); }
-  30%  { opacity: 0.88; transform: scale(1.06) translate(-18px,  12px); }
-  65%  { opacity: 1.00; transform: scale(1.10) translate( 12px, -16px); }
-  100% { opacity: 0.72; transform: scale(1.14) translate(-8px,   20px); }
-}
 
 /* ── Global Noise Overlay ── */
 body::after {
