@@ -24,6 +24,7 @@ const FREQ      = 0.14;        // spatial frequency — lower = longer wavelengt
 const Y_SKEW    = 0.6;         // diagonal skew; higher = more diagonal, more orderly
 const SPEED     = 0.45;        // radians/second
 const SCROLL_K  = 0.004;       // scroll phase multiplier (scrollY * SCROLL_K → radians)
+const SCROLL_LERP = 0.08;      // lerp factor per frame — smooths fast-scroll phase jumps
 const COLOR     = '10,52,138'; // navy RGB
 
 export default function DotWave() {
@@ -36,7 +37,8 @@ export default function DotWave() {
 
     let raf = null;
     let resizeTimer = null;
-    let scrollY = window.scrollY;
+    let scrollTarget = window.scrollY;  // raw value from scroll event
+    let scrollSmooth = window.scrollY;  // lerped display value used in draw
 
     function resize() {
       canvas.width  = window.innerWidth;
@@ -44,7 +46,9 @@ export default function DotWave() {
     }
 
     function drawFrame(t) {
-      const scrollPhase = scrollY * SCROLL_K;
+      // Lerp toward target each frame — prevents phase snapping on fast scroll
+      scrollSmooth += (scrollTarget - scrollSmooth) * SCROLL_LERP;
+      const scrollPhase = scrollSmooth * SCROLL_K;
       const W = canvas.width;
       const H = canvas.height;
 
@@ -87,7 +91,7 @@ export default function DotWave() {
     }
 
     function handleScroll() {
-      scrollY = window.scrollY;
+      scrollTarget = window.scrollY;
     }
 
     resize();
@@ -121,7 +125,7 @@ export default function DotWave() {
         zIndex: -1,
         pointerEvents: 'none',
         display: 'block',
-        willChange: 'contents',
+        willChange: 'transform',
       }}
     />
   );
