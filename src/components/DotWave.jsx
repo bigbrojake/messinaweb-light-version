@@ -1,26 +1,30 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * DotWave — full-viewport canvas dot grid with a traveling sine wave.
+ * DotWave — viewport-fixed canvas dot grid with a traveling sine wave.
  *
- * Strategy (efficient):
- *  - Single <canvas> fixed behind everything (z-index: -1)
- *  - Grid spacing: 24px, dot radius: ~1.5px (≈20% bigger than prior 1px CSS dots)
- *  - Wave: opacity = BASE + AMP * sin(x*FREQ + y*FREQ*0.4 + time*SPEED)
- *    Diagonal propagation (x + 0.4y) makes it feel organic, not grid-marching.
- *  - Canvas resizes on window resize (debounced 150ms)
- *  - RAF loop with timestamp — sine input uses real time so speed is
- *    frame-rate independent
- *  - Pauses when tab is hidden (visibilitychange) to save battery
+ * Wave formula: opacity = BASE + AMP * (0.5 + 0.5 * sin(x*FREQ + y*FREQ*Y_SKEW + t + scrollPhase))
+ *   - Long wavelength (low FREQ) → uniform, orderly ripple rather than busy noise
+ *   - Y_SKEW 0.6 → clean diagonal propagation
+ *   - scrollPhase shifts the wave as the user scrolls so dots ease into dark sections
+ *
+ * Perf:
+ *   - Single fixed canvas, z-index: -1
+ *   - RAF loop, frame-rate independent via timestamp
+ *   - Pauses on tab hidden
+ *   - Debounced resize (150ms)
+ *   - prefers-reduced-motion → single static frame, no RAF
  */
 
-const SPACING = 24;       // px between dot centers
-const RADIUS  = 1.5;      // dot radius px — 20% bigger than the 1px CSS grid
-const BASE    = 0.07;     // minimum dot opacity
-const AMP     = 0.18;     // wave amplitude on top of BASE
-const FREQ    = 0.22;     // spatial frequency (radians per pixel)
-const SPEED   = 0.55;     // radians per second
-const COLOR   = '10,52,138'; // navy RGB
+const SPACING   = 24;          // px grid spacing
+const RADIUS    = 1.43;        // dot radius (1.5 * 0.95 ≈ -5%)
+const BASE      = 0.06;        // minimum opacity (dots never fully invisible)
+const AMP       = 0.16;        // wave amplitude
+const FREQ      = 0.14;        // spatial frequency — lower = longer wavelength = more uniform
+const Y_SKEW    = 0.6;         // diagonal skew; higher = more diagonal, more orderly
+const SPEED     = 0.45;        // radians/second
+const SCROLL_K  = 0.004;       // scroll phase multiplier (scrollY * SCROLL_K → radians)
+const COLOR     = '10,52,138'; // navy RGB
 
 export default function DotWave() {
   const canvasRef = useRef(null);
@@ -28,23 +32,24 @@ export default function DotWave() {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     let raf = null;
     let resizeTimer = null;
+    let scrollY = window.scrollY;
 
     function resize() {
       canvas.width  = window.innerWidth;
       canvas.height = window.innerHeight;
     }
 
-    function draw(ts) {
-      const t = ts * 0.001 * SPEED; // seconds * speed → radians
+    function drawFrame(t) {
+      const scrollPhase = scrollY * SCROLL_K;
       const W = canvas.width;
       const H = canvas.height;
 
       ctx.clearRect(0, 0, W, H);
 
-      // Precompute column count; start half a spacing outside left edge
-      // so dots always fill edge-to-edge regardless of viewport width.
       const cols = Math.ceil(W / SPACING) + 1;
       const rows = Math.ceil(H / SPACING) + 1;
 
@@ -52,8 +57,7 @@ export default function DotWave() {
         const y = row * SPACING;
         for (let col = 0; col < cols; col++) {
           const x = col * SPACING;
-          // Diagonal wave: phase offset by both x and y (0.4 skews the diagonal)
-          const phase   = x * FREQ + y * FREQ * 0.4 + t;
+          const phase   = x * FREQ + y * FREQ * Y_SKEW + t + scrollPhase;
           const opacity = BASE + AMP * (0.5 + 0.5 * Math.sin(phase));
 
           ctx.beginPath();
@@ -62,15 +66,18 @@ export default function DotWave() {
           ctx.fill();
         }
       }
+    }
 
-      raf = requestAnimationFrame(draw);
+    function animate(ts) {
+      drawFrame(ts * 0.001 * SPEED);
+      raf = requestAnimationFrame(animate);
     }
 
     function handleVisibility() {
       if (document.hidden) {
         cancelAnimationFrame(raf);
       } else {
-        raf = requestAnimationFrame(draw);
+        raf = requestAnimationFrame(animate);
       }
     }
 
@@ -79,16 +86,28 @@ export default function DotWave() {
       resizeTimer = setTimeout(resize, 150);
     }
 
+    function handleScroll() {
+      scrollY = window.scrollY;
+    }
+
     resize();
-    raf = requestAnimationFrame(draw);
+
+    if (reducedMotion) {
+      // Static frame at mid-wave opacity — no animation
+      drawFrame(0);
+    } else {
+      raf = requestAnimationFrame(animate);
+      document.addEventListener('visibilitychange', handleVisibility);
+    }
 
     window.addEventListener('resize', handleResize);
-    document.addEventListener('visibilitychange', handleVisibility);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       cancelAnimationFrame(raf);
       clearTimeout(resizeTimer);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, []);
@@ -102,6 +121,7 @@ export default function DotWave() {
         zIndex: -1,
         pointerEvents: 'none',
         display: 'block',
+        willChange: 'contents',
       }}
     />
   );
