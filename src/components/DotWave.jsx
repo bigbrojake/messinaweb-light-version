@@ -13,7 +13,6 @@ import { useEffect, useRef } from 'react';
  *   - RAF loop, frame-rate independent via timestamp
  *   - Pauses on tab hidden
  *   - Debounced resize (150ms)
- *   - prefers-reduced-motion → single static frame, no RAF
  */
 
 const SPACING   = 24;          // px grid spacing
@@ -33,8 +32,6 @@ export default function DotWave() {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     let raf = null;
     let resizeTimer = null;
     let scrollTarget = window.scrollY;  // raw value from scroll event
@@ -95,16 +92,10 @@ export default function DotWave() {
     }
 
     resize();
-
-    if (reducedMotion) {
-      // Static frame at mid-wave opacity — no animation
-      drawFrame(0);
-    } else {
-      raf = requestAnimationFrame(animate);
-      document.addEventListener('visibilitychange', handleVisibility);
-    }
+    raf = requestAnimationFrame(animate);
 
     window.addEventListener('resize', handleResize);
+    document.addEventListener('visibilitychange', handleVisibility);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
