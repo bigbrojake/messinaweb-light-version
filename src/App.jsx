@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
-import DotWave from './components/DotWave';
+import AuroraBg from './components/AuroraBg';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SectionNav from './components/SectionNav';
@@ -13,7 +13,7 @@ import Contact from './pages/Contact';
 function App() {
   return (
     <BrowserRouter>
-      <DotWave />
+      <AuroraBg />
       <ScrollToTop />
       <div className="min-h-screen flex flex-col font-body">
         <Navbar />
