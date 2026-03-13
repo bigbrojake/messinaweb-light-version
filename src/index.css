@@ -13,12 +13,9 @@
     background: transparent;
   }
 
-  /* Dot grid: 1px navy dots on white, viewport-fixed so they don't scroll */
+  /* Canvas DotWave renders the dot grid — html just sets the white base */
   html {
-    background:
-      radial-gradient(circle, rgba(10,52,138,0.13) 1px, transparent 1px)
-      fixed center / 24px 24px,
-      #ffffff;
+    background: #ffffff;
   }
 }
 
