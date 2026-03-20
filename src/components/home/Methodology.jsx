@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const steps = [
   { num: '01', title: 'Understand Goals & Objectives', desc: 'Confirm scope and align with organizational vision.' },
@@ -256,9 +257,11 @@ export default function Methodology() {
 
   function goToPhase(i) {
     if (!containerRef.current || i < 0 || i >= steps.length) return;
-    window.scrollTo({
-      top: containerRef.current.offsetTop + i * window.innerHeight,
-      behavior: 'smooth',
+    gsap.to(window, {
+      scrollTo: { y: containerRef.current.offsetTop + i * window.innerHeight, autoKill: false },
+      duration: 0.6,
+      ease: 'power3.out',
+      overwrite: true,
     });
   }
 
