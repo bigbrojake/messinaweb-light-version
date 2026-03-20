@@ -236,12 +236,15 @@ const Visuals = [V01, V02, V03, V04, V05, V06];
 
 /* ── Main Component ───────────────────────────────────────────────────── */
 export default function Methodology() {
-  const containerRef = useRef(null);
-  const progressRef  = useRef(null);
+  const containerRef   = useRef(null);
+  const progressRef    = useRef(null);
+  const navigatingRef  = useRef(false);
   const [phase, setPhase] = useState(0);
 
-  // Track current phase from scroll position
+  // Track current phase from scroll + debounced manual snap
   useEffect(() => {
+    let snapTimer = null;
+
     function onScroll() {
       if (!containerRef.current) return;
       const top = containerRef.current.offsetTop;
@@ -250,18 +253,46 @@ export default function Methodology() {
         Math.max(0, Math.round((window.scrollY - top) / window.innerHeight))
       );
       setPhase(idx);
+
+      // Snap to nearest step on scroll-end, but not during button navigation
+      if (!navigatingRef.current) {
+        clearTimeout(snapTimer);
+        snapTimer = setTimeout(() => {
+          if (!containerRef.current) return;
+          const t   = containerRef.current.offsetTop;
+          const raw = (window.scrollY - t) / window.innerHeight;
+          const snapped = Math.min(steps.length - 1, Math.max(0, Math.round(raw)));
+          // Only if we're inside the methodology section
+          if (window.scrollY >= t && window.scrollY <= t + (steps.length - 1) * window.innerHeight) {
+            gsap.to(window, {
+              scrollTo: { y: t + snapped * window.innerHeight, autoKill: true },
+              duration: 0.4,
+              ease: 'power3.out',
+            });
+          }
+        }, 150);
+      }
     }
+
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      clearTimeout(snapTimer);
+    };
   }, []);
 
   function goToPhase(i) {
     if (!containerRef.current || i < 0 || i >= steps.length) return;
+    navigatingRef.current = true;
     gsap.to(window, {
       scrollTo: { y: containerRef.current.offsetTop + i * window.innerHeight, autoKill: false },
       duration: 0.6,
       ease: 'power3.out',
       overwrite: true,
+      onComplete: () => {
+        setPhase(i);
+        navigatingRef.current = false;
+      },
     });
   }
 
@@ -278,12 +309,6 @@ export default function Methodology() {
           end: `+=${(steps.length - 1) * 100}%`,
           scrub: 0.8,
           pin: false,
-          snap: {
-            snapTo: 1 / (steps.length - 1),
-            duration: { min: 0.2, max: 0.55 },
-            ease: 'power3.out',
-            delay: 0.03,
-          },
         },
       });
 
