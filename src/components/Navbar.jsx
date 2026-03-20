@@ -60,6 +60,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen]     = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState(null);
+  const [isMobile, setIsMobile]         = useState(false);
   const closeTimer = useRef(null);
 
   useEffect(() => {
@@ -70,6 +71,13 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
   }, []);
 
   // Close mobile menu on route change
@@ -104,8 +112,8 @@ export default function Navbar() {
     }
   }
 
-  // Only use transparent glass treatment on the home page hero
-  const onHeroGradient = location.pathname === '/' && !pastHero;
+  // Transparent glass treatment only on home hero — never on mobile (poor contrast against gradient)
+  const onHeroGradient = location.pathname === '/' && !pastHero && !isMobile;
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-4 py-4 flex justify-center pointer-events-none">
@@ -144,10 +152,14 @@ export default function Navbar() {
                 {/* Nav link */}
                 <Link
                   to={link.path}
-                  className={`relative flex items-center gap-1 text-sm font-semibold transition-all duration-300 py-1 select-none ${
+                  className={`relative flex items-center gap-1 text-sm font-semibold transition-all duration-250 select-none rounded-full px-3 py-1.5 border ${
                     active
-                      ? (onHeroGradient ? 'text-white' : 'text-primary')
-                      : (onHeroGradient ? 'text-white/70 hover:text-white' : 'text-textDark/55 hover:text-textDark')
+                      ? onHeroGradient
+                        ? 'text-white border-white/30 bg-white/10 shadow-[0_0_12px_rgba(30,196,247,0.20)]'
+                        : 'text-primary border-primary/25 bg-primary/5 shadow-[0_0_10px_rgba(30,196,247,0.12)]'
+                      : onHeroGradient
+                        ? 'text-white/70 border-transparent hover:text-white hover:border-white/22 hover:bg-white/10 hover:shadow-[0_0_10px_rgba(255,255,255,0.10)]'
+                        : 'text-textDark/55 border-transparent hover:text-textDark hover:border-primary/18 hover:bg-primary/4 hover:shadow-[0_0_10px_rgba(30,196,247,0.12)]'
                   }`}
                 >
                   {link.label}
@@ -156,9 +168,6 @@ export default function Navbar() {
                     strokeWidth={2.5}
                     className={`transition-transform duration-250 ${open ? 'rotate-180' : ''}`}
                   />
-                  {active && (
-                    <span className="absolute bottom-[-3px] left-0 right-0 h-[2px] bg-accent rounded-full shadow-[0_0_6px_rgba(30,196,247,0.8)]" />
-                  )}
                 </Link>
 
                 {/* Dropdown panel */}

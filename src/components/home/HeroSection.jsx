@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Link } from 'react-router-dom';
+import GlobeHero from './GlobeHero';
 
 export default function HeroSection() {
   const containerRef = useRef(null);
 
-  // ── GSAP text entrance ────────────────────────────────────────────────────
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.3 });
@@ -39,15 +39,18 @@ export default function HeroSection() {
       className="hero-gradient-bg relative h-[100dvh] w-full flex items-end pb-[22vh] lg:pb-[26vh] px-6"
       style={{ overflow: 'clip' }}
     >
-      {/* ── Depth vignette — adds navy weight to upper-left, protects text readability */}
+      {/* Globe — z-5: above drift pseudo-elements, below vignette and text */}
+      <GlobeHero />
+
+      {/* Depth vignette */}
       <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_120%_80%_at_15%_20%,rgba(10,52,138,0.30),transparent)] pointer-events-none" />
 
-      {/* ── Bottom bridge — fades toward TrustAwards navy to avoid white flash ── */}
+      {/* Bottom bridge */}
       <div className="absolute bottom-0 left-0 right-0 h-48 z-10 pointer-events-none"
         style={{ background: 'linear-gradient(to top, rgba(10,52,138,0.92) 0%, rgba(10,52,138,0.55) 30%, rgba(10,52,138,0.15) 60%, transparent 100%)' }}
       />
 
-      {/* ── Content ──────────────────────────────────────────────────────── */}
+      {/* Content */}
       <div className="relative z-30 w-full max-w-7xl mx-auto flex flex-col items-start gap-6">
 
         <span className="hero-label inline-block px-4 py-1.5 bg-white/15 border border-white/30 rounded-[2rem] text-white text-xs font-mono uppercase tracking-widest">
@@ -55,12 +58,21 @@ export default function HeroSection() {
         </span>
 
         <h1 className="flex flex-col gap-1">
-          <span className="hero-title-1 text-3xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight text-white">
+          {/* Line 1 — outline / ghost */}
+          <span
+            className="hero-title-1 font-heading font-extrabold tracking-tight uppercase leading-none"
+            style={{
+              fontSize: 'clamp(2rem, 5vw, 5rem)',
+              WebkitTextStroke: '1.5px rgba(255,255,255,0.50)',
+              color: 'transparent',
+            }}
+          >
             Empower your Enterprise
           </span>
+          {/* Line 2 — solid bold */}
           <span
-            className="hero-title-2 text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-extrabold tracking-tight uppercase"
-            style={{ WebkitTextStroke: '1.5px rgba(255,255,255,0.60)', color: 'transparent' }}
+            className="hero-title-2 font-heading font-extrabold tracking-tight text-white uppercase leading-none"
+            style={{ fontSize: 'clamp(2.5rem, 6.5vw, 6rem)' }}
           >
             Solutions that Connect.
           </span>
