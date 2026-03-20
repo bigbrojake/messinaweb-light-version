@@ -1,31 +1,30 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Target, Clock, ShieldCheck } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const highlights = [
   {
-    Icon: Target,
-    stat: '100%',
+    tag: 'SCOPE',
+    statVal: 100,
+    statSuffix: '%',
     title: 'Tailored Solutions',
-    desc: 'We customize our services to fit your unique needs with precision.',
-    tag: 'Scope',
+    desc: 'No off-the-shelf playbooks. We engineer precision outcomes calibrated to your environment, constraints, and long-term roadmap.',
   },
   {
-    Icon: Clock,
-    stat: '24/7',
+    tag: 'SUPPORT',
+    statVal: 24,
+    statSuffix: '/7',
     title: 'Always Available',
-    desc: 'Our team is here for you anytime, ensuring support when you need it most.',
-    tag: 'Support',
+    desc: 'Round-the-clock coverage ensures your operations stay uninterrupted when it matters most.',
   },
   {
-    Icon: ShieldCheck,
-    stat: '25+',
+    tag: 'EXPERTISE',
+    statVal: 25,
+    statSuffix: '+',
     title: 'Years of Experience',
-    desc: 'With over 25 years, we excel in solutions that drive your success.',
-    tag: 'Expertise',
+    desc: 'Two decades of enterprise delivery across energy, healthcare, federal, and retail.',
   },
 ];
 
@@ -34,73 +33,65 @@ export default function ValueHighlights() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo('.vh-card',
-        { opacity: 0, y: 48, clipPath: 'inset(12% 0 0 0 round 2rem)' },
+      gsap.fromTo('.vh-col',
+        { opacity: 0, y: 32 },
         {
-          opacity: 1,
-          y: 0,
-          clipPath: 'inset(0% 0 0 0 round 2rem)',
-          duration: 0.9,
-          stagger: 0.14,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 82%',
-          },
+          opacity: 1, y: 0,
+          duration: 0.9, stagger: 0.13, ease: 'power3.out',
+          scrollTrigger: { trigger: containerRef.current, start: 'top 80%' },
         }
       );
+
+      highlights.forEach((item, i) => {
+        const statEl = containerRef.current.querySelector(`[data-stat="${i}"]`);
+        if (!statEl) return;
+        const counter = { val: 0 };
+        gsap.to(counter, {
+          val: item.statVal, duration: 1.8, ease: 'power2.out',
+          onUpdate() { statEl.textContent = Math.round(counter.val) + item.statSuffix; },
+          scrollTrigger: { trigger: containerRef.current, start: 'top 78%' },
+        });
+      });
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 px-6 max-w-7xl mx-auto relative z-20">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {highlights.map((item, i) => {
-          const Icon = item.Icon;
-          return (
+    <section ref={containerRef} className="py-10 px-6 max-w-7xl mx-auto relative z-20">
+      {/* Eyebrow */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="w-px h-6 bg-gradient-to-b from-accent to-primary/50" />
+        <span className="font-mono text-[11px] tracking-[0.28em] text-accent uppercase">Why MTS</span>
+      </div>
+
+      {/* 3-column grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-primary/8">
+        {highlights.map((item, i) => (
+          <div key={i} className="vh-col group flex flex-col gap-2.5 px-0 md:px-8 py-6 md:py-0 first:pl-0 last:pr-0">
+            {/* Stat */}
             <div
-              key={i}
-              className="vh-card group relative bg-white/80 backdrop-blur-sm rounded-[2rem] border border-primary/8 shadow-brand hover:shadow-brand-lg card-inertia overflow-hidden"
+              data-stat={i}
+              className="font-heading font-black leading-none tracking-tight text-primary/15 group-hover:text-primary transition-colors duration-500"
+              style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4rem)' }}
             >
-              {/* Gradient accent stripe */}
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-accent to-primary/40 rounded-t-[2rem]" />
-
-              {/* Top row: tag + icon */}
-              <div className="flex items-center justify-between px-8 pt-8 pb-0">
-                <span className="font-mono text-[10px] text-accent tracking-[0.2em] uppercase bg-accent/8 px-3 py-1 rounded-full">
-                  {item.tag}
-                </span>
-                <div className="w-11 h-11 bg-primary rounded-xl flex items-center justify-center shadow-brand group-hover:bg-accent group-hover:shadow-[0_4px_20px_rgba(30,196,247,0.40)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
-                  <Icon size={20} className="text-white" />
-                </div>
-              </div>
-
-              {/* Giant stat */}
-              <div className="px-8 pt-6 pb-0">
-                <span className="font-heading font-black text-[4rem] md:text-[4.5rem] leading-none text-primary tracking-tight select-none">
-                  {item.stat}
-                </span>
-              </div>
-
-              {/* Divider */}
-              <div className="mx-8 mt-4 h-px bg-gradient-to-r from-primary/12 via-accent/20 to-transparent" />
-
-              {/* Title + desc */}
-              <div className="px-8 pt-5 pb-8">
-                <h3 className="font-heading font-bold text-xl text-textDark mb-2">
-                  {item.title}
-                </h3>
-                <p className="font-body text-sm text-gray-500 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-
-              {/* Bottom scan line on hover */}
-              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary to-accent rounded-b-[2rem] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]" />
+              0{item.statSuffix}
             </div>
-          );
-        })}
+
+            {/* Tag + title */}
+            <div className="flex flex-col gap-1">
+              <span className="font-mono text-[9px] tracking-[0.32em] uppercase text-accent/80">{item.tag}</span>
+              <h3 className="font-heading font-bold text-lg text-textDark group-hover:text-primary transition-colors duration-400 leading-tight">
+                {item.title}
+              </h3>
+            </div>
+
+            {/* Accent rule */}
+            <div className="w-8 h-0.5 bg-gradient-to-r from-accent to-primary/30" />
+
+            {/* Desc */}
+            <p className="font-body text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

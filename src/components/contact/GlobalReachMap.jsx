@@ -10,7 +10,11 @@ export default function GlobalReachMap() {
         </p>
       </div>
 
-      <div className="relative w-full max-w-6xl mx-auto aspect-[21/9] flex items-center justify-center opacity-80">
+      <div className="relative w-full max-w-6xl mx-auto aspect-[21/9] flex items-center justify-center opacity-80 border border-primary/8 rounded-[3rem] shadow-[inset_0_1px_0_rgba(30,196,247,0.10)] overflow-hidden"
+        style={{
+          backgroundImage: 'repeating-linear-gradient(0deg, rgba(10,52,138,0.03) 0 1px, transparent 1px 40px), repeating-linear-gradient(90deg, rgba(10,52,138,0.03) 0 1px, transparent 1px 40px)',
+        }}
+      >
         {/* Abstract stylized world map SVG */}
         <svg
           viewBox="0 0 1000 400"
@@ -21,7 +25,7 @@ export default function GlobalReachMap() {
           {/* North America */}
           <path
             d="M150 100 Q180 80 200 120 T250 150 T280 200 T220 250 T180 220 T150 180 Z"
-            fill="#CBD5E1"
+            fill="#EEF4FF"
             stroke="#94A3B8"
             strokeWidth="2"
             strokeDasharray="4 4"
@@ -29,7 +33,7 @@ export default function GlobalReachMap() {
           {/* South America */}
           <path
             d="M260 220 Q290 250 300 300 T280 380 T240 330 Z"
-            fill="#E2E8F0"
+            fill="#F0F6FF"
             stroke="#94A3B8"
             strokeWidth="2"
             strokeDasharray="4 4"
@@ -37,7 +41,7 @@ export default function GlobalReachMap() {
           {/* Europe / Asia */}
           <path
             d="M450 80 Q500 50 600 80 T750 120 T800 200 T650 250 T550 180 T480 150 Z"
-            fill="#CBD5E1"
+            fill="#EEF4FF"
             stroke="#94A3B8"
             strokeWidth="2"
             strokeDasharray="4 4"
@@ -45,7 +49,7 @@ export default function GlobalReachMap() {
           {/* Africa */}
           <path
             d="M480 180 Q520 200 550 250 T530 350 T450 300 Z"
-            fill="#E2E8F0"
+            fill="#F0F6FF"
             stroke="#94A3B8"
             strokeWidth="2"
             strokeDasharray="4 4"

@@ -72,6 +72,14 @@ body::after {
   animation: marquee-scroll 40s linear infinite;
 }
 
+.animate-marquee-reverse {
+  animation: marquee-scroll 55s linear infinite reverse;
+}
+
+.animate-marquee-slow {
+  animation: marquee-scroll 90s linear infinite;
+}
+
 /* ── Methodology Phase Visual Animations ── */
 @keyframes meth-outer-pulse {
   0%, 100% { opacity: 0.22; transform: scale(1); }
