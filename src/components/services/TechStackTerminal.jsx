@@ -1,34 +1,110 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Code2, Cloud, Cpu, Server } from 'lucide-react';
+import {
+  ArrowRightLeft, Building2, Cloud, RefreshCw, Terminal,
+  GitBranch, Layers, Headphones, Network, BrainCircuit,
+  ShieldCheck, Code2, Map, Cpu, Award, Settings2,
+} from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const categories = [
   {
-    icon: Code2,
-    label: 'Infrastructure as Code',
-    desc: 'Automated, repeatable provisioning across cloud and on-prem — eliminating configuration drift at scale.',
-    tools: ['Terraform', 'Ansible', 'Azure Bicep', 'ARM Templates'],
+    icon: ArrowRightLeft,
+    label: 'Migration Factory',
+    desc: 'Fixed-fee, outcome-driven workload migrations across virtual, physical, cloud, and database platforms — no hourly billing.',
+    chips: ['X2V / P2V / V2C', 'Cross-Platform', 'Azure Local & Nutanix', 'SQL & Oracle DB', 'Storage & Data Mgmt', 'Fixed-Fee Pricing'],
+  },
+  {
+    icon: Building2,
+    label: 'Microsoft Consulting Services',
+    desc: 'Full-stack Microsoft advisory and implementation covering M365, identity, Dynamics 365, and platform infrastructure.',
+    chips: ['O365 & Products', 'Entra ID (Azure AD)', 'D365 Application Services', 'Windows Server', 'Hypervisors'],
   },
   {
     icon: Cloud,
-    label: 'Cloud Platforms',
-    desc: 'Multi-cloud architecture, migration, and managed services across the three major hyperscalers.',
-    tools: ['Microsoft Azure', 'Amazon AWS', 'Google Cloud'],
+    label: 'Azure & Google Consulting',
+    desc: 'Cloud architecture, modernization, and Day 2 operations across Azure and Google Cloud — from lift-and-shift to cloud-native.',
+    chips: ['IaaS / PaaS / CaaS', 'DevOps & DevSecOps', 'Cost Optimization', 'Containerization', 'Virtual Desktop', 'Day 2 Admin'],
+  },
+  {
+    icon: RefreshCw,
+    label: 'Automated OS Upgrades',
+    desc: 'Fixed-fee, automated in-place OS upgrade services for Windows and Red Hat environments — US-based resources, 7x24x365.',
+    chips: ['Windows 2022', 'Red Hat 9', 'Fixed Fee', 'Automation', 'US-Based 7x24x365'],
+  },
+  {
+    icon: Terminal,
+    label: 'Red Hat Services',
+    desc: 'Workshops, migrations, Day 2 administration, and automation across the full Red Hat portfolio.',
+    chips: ['OpenShift', 'OpenStack', 'Ansible Automation Platform', 'Automated Migrations', 'ServiceNow', 'Day 2 Services'],
+  },
+  {
+    icon: GitBranch,
+    label: 'Process Design & Automation',
+    desc: 'Define, implement, and automate IT service processes — from initial design through version upgrades and migrations.',
+    chips: ['Process Definition', 'Design & Implement', 'Automate', 'Version Upgrades', 'Migrations'],
+  },
+  {
+    icon: Layers,
+    label: 'VMware',
+    desc: 'Comprehensive VMware consulting, migration, and modernization services including containerization and multi-site recovery.',
+    chips: ['Azure VMware Solutions', 'Migrations', 'Tanzu Containerization', 'NSX Micro-Segmentation', 'VCF 9.X', 'ARIA Suite', 'SRM / Live Recovery'],
+  },
+  {
+    icon: Headphones,
+    label: 'Managed Services',
+    desc: 'Onshore and offshore 7x24x365 managed support with L1–L3 engineers, Staffing-aaS, and continuous process improvement.',
+    chips: ['7x24x365 Coverage', 'L1 / L2 / L3 Support', 'Staffing-aaS', 'Process Automation', 'Network Assessment'],
+  },
+  {
+    icon: Network,
+    label: 'Network Assessments',
+    desc: 'Current-state analysis, redesign, and business resiliency planning for enterprise network environments.',
+    chips: ['As-Is & To-Be Designs', 'Re-Designs', 'Get Well Plans', 'DR & HA', 'Security Resiliency'],
+  },
+  {
+    icon: BrainCircuit,
+    label: 'AI/ML & Data',
+    desc: 'End-to-end AI and data strategy — from use case identification and data governance to GenAI and Agentic AI implementation.',
+    chips: ['Use Case Identification', 'Data Governance', 'GenAI Strategy', 'Agentic AI', 'Data Foundations'],
+  },
+  {
+    icon: ShieldCheck,
+    label: 'Resilience & Cyber Security',
+    desc: 'Holistic security and resilience programs covering risk assessment, protection, recovery, and contingency planning.',
+    chips: ['Cyber Risk Assessment', 'Protection Services', 'Business Impact Analysis', 'Security Risk Framework', 'Contingency Planning'],
+  },
+  {
+    icon: Code2,
+    label: 'Applications',
+    desc: 'Application rationalization, modernization, migration, and development — aligned to business goals and long-term platform strategy.',
+    chips: ['App Rationalization', 'App Modernization', 'Migration & Development'],
+  },
+  {
+    icon: Map,
+    label: 'Strategy & Roadmaps',
+    desc: 'Structured strategy workshops and executable technology roadmaps grounded in business case and ROI analysis.',
+    chips: ['Strategy Workshops', 'Executable Roadmap', 'Business Case & ROI'],
   },
   {
     icon: Cpu,
-    label: 'Scripting & Automation',
-    desc: 'Custom pipelines and integrations that eliminate manual operational overhead and accelerate delivery.',
-    tools: ['Python 3.11+', 'PowerShell', 'Bash', 'ServiceNow'],
+    label: 'Technology Planning & Implementation',
+    desc: 'Platform strategy development and end-to-end design and implementation of enterprise technology platforms.',
+    chips: ['Platform Strategy & Roadmap', 'Platform Design & Implementation'],
   },
   {
-    icon: Server,
-    label: 'Enterprise Platforms',
-    desc: 'Deep hands-on expertise in the infrastructure platforms powering critical business operations.',
-    tools: ['VMware', 'Red Hat Linux', 'Dell Technologies', 'Windows Server'],
+    icon: Award,
+    label: 'Centers of Excellence',
+    desc: 'Build and operate PMO and CISO centers of excellence — establishing governance, standards, and leadership capability.',
+    chips: ['PMO-as-a-Service', 'CISO-as-a-Service', 'Build Out & Operate'],
+  },
+  {
+    icon: Settings2,
+    label: 'Operating Model',
+    desc: 'ITIL-aligned operating model design covering process automation, organizational structure, governance, and financial modeling.',
+    chips: ['ITIL Optimization', 'Organizational Design', 'Human Change Mgmt', 'Governance & Metrics', 'Financial Modeling'],
   },
 ];
 
@@ -44,7 +120,7 @@ export default function TechStackTerminal() {
       );
       gsap.fromTo('.ts-card',
         { opacity: 0, y: 36 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out',
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.07, ease: 'power3.out',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } }
       );
     }, sectionRef);
@@ -58,20 +134,20 @@ export default function TechStackTerminal() {
       <div className="ts-header flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
         <div>
           <span className="font-mono text-[11px] text-accent tracking-[0.28em] uppercase block mb-4">
-            Technology Proficiencies
+            Service Capabilities
           </span>
           <h2 className="text-4xl md:text-5xl font-heading font-bold text-textDark leading-tight">
-            The Tools We Deploy
+            What We Deliver
           </h2>
         </div>
         <p className="font-body text-base text-textDark/50 max-w-sm leading-relaxed">
-          A curated stack of enterprise-grade technologies — selected for reliability,
-          scalability, and proven results in production.
+          End-to-end capabilities across infrastructure, cloud, security, AI, and enterprise
+          transformation — all under one roof.
         </p>
       </div>
 
       {/* Category grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {categories.map((cat, i) => {
           const Icon = cat.icon;
           return (
@@ -97,14 +173,14 @@ export default function TechStackTerminal() {
                 {cat.desc}
               </p>
 
-              {/* Tool chips */}
-              <div className="flex flex-wrap gap-2">
-                {cat.tools.map((tool) => (
+              {/* Chips */}
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {cat.chips.map((chip) => (
                   <span
-                    key={tool}
+                    key={chip}
                     className="px-3 py-1 rounded-full border border-primary/12 bg-primary/[0.04] font-mono text-[11px] text-primary/70 tracking-wide"
                   >
-                    {tool}
+                    {chip}
                   </span>
                 ))}
               </div>
