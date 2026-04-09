@@ -28,13 +28,13 @@ export default function CommunityImpact() {
         <div className="community-image relative aspect-square md:aspect-[4/3] rounded-[3rem] overflow-hidden border border-accent/20 shadow-[0_8px_48px_rgba(30,196,247,0.08)] hover:border-accent/40 transition-colors duration-400">
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] hover:scale-110 ease-out"
-            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1593113565694-c6aa89f4facd?q=70&w=800&auto=format&fit=crop")' }}
+            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1552664730-d307ca884978?q=70&w=800&auto=format&fit=crop")' }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/15 to-accent/10 mix-blend-multiply" />
           {/* Image overlay label */}
           <div className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-sm border border-primary/10 rounded-2xl px-4 py-2.5">
             <p className="font-mono text-[9px] tracking-[0.22em] text-accent uppercase mb-0.5">Community First</p>
-            <p className="font-heading font-bold text-sm text-textDark">Since 1998</p>
+            <p className="font-heading font-bold text-sm text-textDark">Since 2016</p>
           </div>
         </div>
 
@@ -61,8 +61,8 @@ export default function CommunityImpact() {
               <p className="font-mono text-[10px] text-accent tracking-[0.22em] uppercase mb-4">Annual Sponsors</p>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  'Angel Fund for ALS Research — Squirrel Run 5K',
-                  'Newburyport Education Foundation Golf Tournament',
+                  'Angel Fund for ALS Research',
+                  'Newburyport Education Foundation',
                   "St. Jude Children's Hospital",
                 ].map((org, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm text-gray-600 font-body">

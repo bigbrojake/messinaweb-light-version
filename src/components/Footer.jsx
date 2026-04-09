@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="mt-20 bg-primary text-white rounded-t-[4rem] px-8 pt-16 pb-8 relative z-10 w-full">
+    <footer className="bg-primary text-white rounded-t-[4rem] px-8 pt-16 pb-8 relative z-10 w-full">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-white/15 pb-12 mb-8">
         {/* Brand */}
         <div className="flex flex-col gap-4">
@@ -20,7 +20,7 @@ export default function Footer() {
           <h3 className="text-lg font-heading font-semibold text-white">Navigation</h3>
           <div className="flex flex-col gap-2">
             <Link to="/about" className="text-sm text-white/60 hover:text-accent transition-colors duration-300">About Us</Link>
-            <Link to="/services" className="text-sm text-white/60 hover:text-accent transition-colors duration-300">Services</Link>
+            <Link to="/what-we-do" className="text-sm text-white/60 hover:text-accent transition-colors duration-300">What We Do</Link>
             <Link to="/case-studies" className="text-sm text-white/60 hover:text-accent transition-colors duration-300">Case Studies</Link>
             <Link to="/contact" className="text-sm text-white/60 hover:text-accent transition-colors duration-300">Contact</Link>
           </div>

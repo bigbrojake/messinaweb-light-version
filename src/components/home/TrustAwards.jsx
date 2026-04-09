@@ -161,7 +161,7 @@ export default function TrustAwards() {
 
         {/* Bottom trust line */}
         <p className="mt-10 text-center font-mono text-[10px] text-white/25 tracking-[0.2em] uppercase">
-          Trusted by energy · healthcare · federal · retail enterprises since 1998
+          Trusted by energy · healthcare · federal · retail enterprises since 2016
         </p>
       </div>
     </section>

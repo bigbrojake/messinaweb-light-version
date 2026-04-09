@@ -1,64 +1,33 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FileSignature, RefreshCw, UserCheck, Building2, Layers, TrendingUp } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const tracks = [
-  { label: 'Consulting Services', desc: '[Placeholder: brief description of consulting services track]' },
-  { label: 'Product Lead Services', desc: '[Placeholder: brief description of product lead services track]' },
-];
-
 const models = [
   {
+    num: '01',
     id: 'C2H',
-    icon: FileSignature,
     title: 'Contract-to-Hire',
     tag: 'Low Risk',
-    tagColor: 'text-emerald-600 bg-emerald-50 border-emerald-200',
-    desc: '[Placeholder: description of contract-to-hire model]',
+    tagColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/25',
+    desc: 'Engage talent on a contract basis with a defined path to full-time. Evaluate technical fit and cultural alignment before making a permanent commitment — reducing hiring risk without slowing momentum.',
   },
   {
-    id: 'T2P',
-    icon: RefreshCw,
-    title: 'Temp-to-Perm',
-    tag: 'Flexible',
-    tagColor: 'text-sky-600 bg-sky-50 border-sky-200',
-    desc: '[Placeholder: description of temp-to-perm model]',
-  },
-  {
+    num: '02',
     id: 'DH',
-    icon: UserCheck,
     title: 'Direct-Hire',
     tag: 'Fast Track',
-    tagColor: 'text-violet-600 bg-violet-50 border-violet-200',
-    desc: '[Placeholder: description of direct-hire model]',
+    tagColor: 'text-violet-400 bg-violet-400/10 border-violet-400/25',
+    desc: 'When you know what you need, we move fast. MTS sources, vets, and presents candidates for direct placement — cutting time-to-hire without sacrificing quality or fit.',
   },
   {
-    id: 'RES',
-    icon: Building2,
-    title: 'Residencies',
-    tag: 'Embedded',
-    tagColor: 'text-amber-600 bg-amber-50 border-amber-200',
-    desc: '[Placeholder: description of residencies model]',
-  },
-  {
+    num: '03',
     id: 'SAAS',
-    icon: Layers,
     title: 'Staffing-aaS',
     tag: 'Managed',
     tagColor: 'text-accent bg-accent/10 border-accent/30',
-    desc: '[Placeholder: description of Staffing-aaS model]',
-    featured: true,
-  },
-  {
-    id: 'BENCH',
-    icon: TrendingUp,
-    title: 'Bench Strength',
-    tag: 'Strategic',
-    tagColor: 'text-primary bg-primary/[0.06] border-primary/20',
-    desc: '[Placeholder: description of bench strength building model]',
+    desc: 'A fully managed resourcing model built for enterprise IT operations. MTS provides dedicated L1–L3 resources with defined SLAs, onshore and offshore coverage, and continuous process improvement baked in — so your team scales without the overhead.',
   },
 ];
 
@@ -75,121 +44,89 @@ export default function StaffingModels() {
         { opacity: 0, y: -16 },
         { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }
       )
-      .fromTo('.sm-track',
-        { opacity: 0, x: -20 },
-        { opacity: 1, x: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out' },
+      .fromTo('.sm-panel',
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out' },
         '-=0.3'
-      )
-      .fromTo('.sm-card',
-        { opacity: 0, y: 32, scale: 0.97 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.09, ease: 'power3.out' },
-        '-=0.2'
       );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-28 px-6 max-w-7xl mx-auto border-t border-primary/8">
+    <section
+      ref={sectionRef}
+      className="py-20 px-6 bg-primary"
+    >
+      <div className="max-w-7xl mx-auto">
 
-      {/* Header */}
-      <div className="sm-header mb-12">
-        <span className="font-mono text-[11px] text-accent tracking-[0.28em] uppercase block mb-4">
-          Resource Staffing
-        </span>
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-textDark leading-tight max-w-xl">
-            Customized Hiring Models,<br />Built for Scale.
-          </h2>
-          <p className="font-body text-base text-textDark/50 max-w-sm leading-relaxed">
-            [Placeholder: section intro copy]
-          </p>
-        </div>
-      </div>
-
-      {/* Dual track indicator */}
-      <div className="flex flex-col sm:flex-row gap-3 mb-14">
-        {tracks.map((t, i) => (
-          <div
-            key={i}
-            className="sm-track flex items-start gap-4 px-6 py-4 rounded-2xl border border-primary/10 bg-white shadow-brand flex-1"
-          >
-            <div className="w-2 h-2 rounded-full bg-accent mt-1.5 shrink-0 shadow-[0_0_8px_rgba(30,196,247,0.5)]" />
-            <div>
-              <p className="font-heading font-semibold text-sm text-textDark leading-tight">{t.label}</p>
-              <p className="font-body text-xs text-textDark/45 mt-0.5">{t.desc}</p>
-            </div>
+        {/* Header */}
+        <div className="sm-header mb-10">
+          <span className="font-mono text-[11px] text-accent tracking-[0.28em] uppercase block mb-4">
+            Resource Staffing
+          </span>
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-white leading-tight">
+              Talent on Your Terms.
+            </h2>
+            <p className="font-body text-sm text-white/55 max-w-xs leading-relaxed md:mt-1">
+              Whether you're evaluating fit before committing or scaling an entire support operation, we work closely with you to structure the right model — not hand you a template.
+            </p>
           </div>
-        ))}
-      </div>
+        </div>
 
-      {/* Model cards — 3-column grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {models.map((m) => {
-          const Icon = m.icon;
-          return (
-            <div
-              key={m.id}
-              className={`sm-card group relative flex flex-col rounded-[2rem] border p-7 transition-all duration-400
-                ${m.featured
-                  ? 'border-accent/30 bg-primary shadow-[0_0_40px_rgba(30,196,247,0.12),inset_0_1px_0_rgba(30,196,247,0.15)]'
-                  : 'border-primary/10 bg-white shadow-brand hover:shadow-brand-md hover:border-primary/20'
-                }`}
-            >
-              {/* Model ID badge */}
-              <div className="absolute top-5 right-5">
-                <span className={`font-mono text-[10px] tracking-widest font-bold
-                  ${m.featured ? 'text-accent/60' : 'text-primary/25'}`}>
-                  {m.id}
-                </span>
-              </div>
+        {/* Three-panel typographic grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.08]">
+          {models.map((m) => (
+            <div key={m.id} className="sm-panel py-8 md:py-0 md:px-8 first:md:pl-0 last:md:pr-0">
 
-              {/* Icon */}
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-5
-                ${m.featured
-                  ? 'bg-accent/10 border border-accent/25'
-                  : 'bg-primary/[0.05] border border-primary/10 group-hover:border-accent/20 group-hover:bg-accent/[0.06] transition-colors duration-300'
-                }`}>
-                <Icon size={18} className={m.featured ? 'text-accent' : 'text-primary/50 group-hover:text-accent/70 transition-colors duration-300'} />
-              </div>
+              {/* Accent bar */}
+              <div className="w-8 h-[2px] bg-accent/50 mb-6" />
 
-              {/* Title */}
-              <h3 className={`font-heading font-bold text-lg leading-snug mb-2
-                ${m.featured ? 'text-white' : 'text-textDark'}`}>
+              {/* Number */}
+              <span className="font-mono text-[10px] tracking-[0.2em] text-white/30 uppercase block mb-3">
+                {m.num}
+              </span>
+
+              {/* Model name */}
+              <h3
+                className="font-heading font-black text-white uppercase leading-none tracking-tight mb-4"
+                style={{ fontSize: 'clamp(1.4rem, 1.9vw, 2rem)' }}
+              >
                 {m.title}
               </h3>
 
               {/* Tag */}
-              <span className={`self-start mb-4 px-2.5 py-0.5 rounded-full border text-[10px] font-mono tracking-wider uppercase
-                ${m.featured ? 'text-accent/80 bg-accent/10 border-accent/25' : m.tagColor}`}>
+              <span className={`inline-flex mb-6 px-2.5 py-1 rounded-full border text-[10px] font-mono tracking-wider uppercase ${m.tagColor}`}>
                 {m.tag}
               </span>
 
               {/* Description */}
-              <p className={`font-body text-sm leading-relaxed mt-auto
-                ${m.featured ? 'text-white/60' : 'text-textDark/50'}`}>
+              <p className="font-body text-[13px] leading-loose text-white/65">
                 {m.desc}
               </p>
-            </div>
-          );
-        })}
-      </div>
 
-      {/* CTA footer row */}
-      <div className="mt-14 flex flex-col md:flex-row items-center justify-between gap-6 pt-10 border-t border-primary/8">
-        <div>
-          <p className="font-heading font-semibold text-textDark text-lg">[Placeholder: CTA headline]</p>
-          <p className="font-body text-sm text-textDark/45 mt-1">
-            [Placeholder: CTA supporting copy]
-          </p>
+            </div>
+          ))}
         </div>
-        <a
-          href="/contact"
-          className="magnetic-btn inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-primary text-white font-heading font-semibold text-sm shadow-brand-md hover:shadow-brand-lg transition-shadow duration-300"
-        >
-          Start the Conversation
-          <span className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center text-xs">→</span>
-        </a>
+
+        {/* CTA footer row */}
+        <div className="mt-14 flex flex-col md:flex-row items-center justify-between gap-6 pt-10 border-t border-white/[0.08]">
+          <div>
+            <p className="font-heading font-semibold text-white text-lg">Not sure which model fits your team?</p>
+            <p className="font-body text-sm text-white/45 mt-1">
+              Most engagements start with a single conversation. Let's figure out the right structure together.
+            </p>
+          </div>
+          <a
+            href="/contact"
+            className="magnetic-btn inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-white text-primary font-heading font-semibold text-sm shadow-brand-md hover:shadow-brand-lg transition-shadow duration-300 shrink-0"
+          >
+            Start the Conversation
+            <span className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-xs">→</span>
+          </a>
+        </div>
+
       </div>
     </section>
   );

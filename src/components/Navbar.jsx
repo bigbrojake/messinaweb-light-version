@@ -8,10 +8,9 @@ const navLinks = [
     label: 'Home',
     sections: [
       { key: 'hero',       label: 'Home Overview'       },
-      { key: 'trust',      label: 'Awards & Recognition' },
       { key: 'features',   label: 'What We Deliver'     },
+      { key: 'trust',      label: 'Awards & Recognition' },
       { key: 'highlights', label: 'Our Principles'      },
-      { key: 'partners',   label: 'Partner Ecosystem'   },
     ],
   },
   {
@@ -25,13 +24,12 @@ const navLinks = [
     ],
   },
   {
-    path: '/services',
-    label: 'Services',
+    path: '/what-we-do',
+    label: 'What We Do',
     sections: [
-      { key: 'catalog',     label: 'Service Catalog'   },
-      { key: 'techstack',   label: 'Tech Stack'        },
-      { key: 'staffing',    label: 'Resource Staffing' },
-      { key: 'methodology', label: 'MTS Methodology'   },
+      { key: 'staffing',    label: 'Resource Staffing'    },
+      { key: 'techstack',   label: 'Service Capabilities' },
+      { key: 'methodology', label: 'MTS Methodology'      },
     ],
   },
   {
@@ -47,7 +45,6 @@ const navLinks = [
     label: 'Contact',
     sections: [
       { key: 'protocol', label: 'Get in Touch'  },
-      { key: 'map',      label: 'Global Reach'  },
     ],
   },
 ];
@@ -123,7 +120,7 @@ export default function Navbar() {
             ? 'bg-white/10 backdrop-blur-md border border-white/18 shadow-none'
             : scrolled
               ? 'bg-white/95 backdrop-blur-2xl border border-gray-200/80 shadow-[0_4px_32px_rgba(10,52,138,0.10),0_0_0_1px_rgba(10,52,138,0.04)]'
-              : 'bg-white/88 backdrop-blur-xl border border-primary/10 shadow-[0_2px_24px_rgba(10,52,138,0.08)]'
+              : 'bg-white backdrop-blur-xl border border-primary/10 shadow-[0_2px_24px_rgba(10,52,138,0.08)]'
         }`}
       >
         {/* Logo — flex-1 keeps it left while links stay centered */}

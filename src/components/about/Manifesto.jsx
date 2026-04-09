@@ -81,7 +81,7 @@ export default function Manifesto() {
               </div>
               <div>
                 <p className="font-heading font-semibold text-sm text-textDark leading-tight">Messina Technology Solutions</p>
-                <p className="font-mono text-[10px] text-textDark/35 tracking-widest uppercase mt-0.5">Est. 1998 · Newburyport, MA</p>
+                <p className="font-mono text-[10px] text-textDark/35 tracking-widest uppercase mt-0.5">Est. 2016 · Newburyport, MA</p>
               </div>
             </div>
           </div>
