@@ -313,25 +313,6 @@ export default function LocationsMap() {
                 </div>
               </div>
 
-              <div
-                className="pt-4 space-y-2.5"
-                style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-accent" style={{ boxShadow: '0 0 5px rgba(30,196,247,0.8)' }} />
-                  <span className="font-body text-xs text-white/50">
-                    Newburyport, MA
-                    <span className="ml-2 font-mono text-[9px] text-accent/60 uppercase tracking-widest">US HQ</span>
-                  </span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-accent" style={{ boxShadow: '0 0 5px rgba(30,196,247,0.8)' }} />
-                  <span className="font-body text-xs text-white/50">
-                    Hyderabad, Telangana
-                    <span className="ml-2 font-mono text-[9px] text-accent/60 uppercase tracking-widest">India</span>
-                  </span>
-                </div>
-              </div>
             </div>
 
           </div>

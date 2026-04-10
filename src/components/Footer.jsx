@@ -26,14 +26,18 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Contact */}
+        {/* Locations */}
         <div className="flex flex-col gap-4">
-          <h3 className="text-lg font-heading font-semibold text-white">Contact</h3>
-          <div className="flex flex-col gap-2">
-            <a href="mailto:info@messina-llc.com" className="text-sm text-white/60 hover:text-accent transition-colors duration-300">
-              info@messina-llc.com
-            </a>
-            <p className="text-sm text-white/60">Newburyport, MA</p>
+          <h3 className="text-lg font-heading font-semibold text-white">Locations</h3>
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-0.5">
+              <p className="text-xs font-mono uppercase tracking-widest text-accent/60">US HQ</p>
+              <p className="text-sm text-white/60">Newburyport, MA</p>
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <p className="text-xs font-mono uppercase tracking-widest text-accent/60">India</p>
+              <p className="text-sm text-white/60">Hyderabad, Telangana</p>
+            </div>
           </div>
         </div>
       </div>
