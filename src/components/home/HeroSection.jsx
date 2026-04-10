@@ -5,7 +5,6 @@ import NodeField from './NodeField';
 
 const POOL = [
   { text: "Experience, attention, and care you can't replace.", keyword: "care" },
-  { text: "Dell Technologies 1st Choice Partner.",              keyword: "1st Choice Partner" },
   { text: "Trusted by Fortune 500 enterprises.",               keyword: "Fortune 500" },
   { text: "Consulting. Staffing. Delivery. Since 2016.",        keyword: "Delivery" },
   { text: "Enterprise outcomes. Human relationships.",          keyword: "Human relationships" },

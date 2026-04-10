@@ -34,7 +34,7 @@ const team = [
     role: 'Workforce Operations Manager',
     img: '/team/will.png',
     imgPosition: 'center center',
-    bio: "A military brat who's lived across Europe and the U.S., Will brings adaptability and a people-first mindset to everything he does. He chases Phish concerts coast to coast with his wife, bleeds Cardinal red, and shares his home with two cats — Manny and Moony, aka the Man 'n the Moon.",
+    bio: "A military brat who's lived across Europe and the U.S., Will brings 17+ years of labor management experience and a people-first mindset to everything he does. He chases Phish concerts coast to coast with his wife, bleeds Cardinal red, and shares his home with two cats — Manny and Moony, aka the Man 'n the Moon.",
   },
   {
     name: 'Keri Burnell',
