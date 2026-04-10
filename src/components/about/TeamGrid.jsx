@@ -12,16 +12,16 @@ const team = [
     bio: 'Three decades in consulting and staffing, built on an unwavering commitment to ethics, hard work, and community. Outside the office, Josh can be found cooking for his family, on the golf course, at a live music show, or locked into playoff hockey.',
   },
   {
-    name: 'John Palmer',
-    role: 'Managing Director, Sales & Business Development',
-    img: '/team/john.jpg',
-    bio: 'A technology professional with 30+ years in enterprise infrastructure, John has a talent for turning complex technical ideas into real-world outcomes at scale. Before IT, he was a commercial pilot — these days he trades the cockpit for the Jersey Shore, tournament pool, and what he calls a very bad game of golf.',
-  },
-  {
     name: 'Erin Mitchell',
     role: 'VP of Finance & Operations',
     img: '/team/erin.jpg',
     bio: "Working alongside Josh since 2018, Erin has helped scale Messina over 500% through strategic financial leadership and operational excellence. A live music devotee with 300+ concerts and 46 states behind her, she's also a proud rescue Frenchie mom to Dolly.",
+  },
+  {
+    name: 'John Palmer',
+    role: 'Managing Director, Sales & Business Development',
+    img: '/team/john.jpg',
+    bio: 'A technology professional with 30+ years in enterprise infrastructure, John has a talent for turning complex technical ideas into real-world outcomes at scale. Before IT, he was a commercial pilot — these days he trades the cockpit for the Jersey Shore, tournament pool, and what he calls a very bad game of golf.',
   },
   {
     name: 'Maggie Ellison',

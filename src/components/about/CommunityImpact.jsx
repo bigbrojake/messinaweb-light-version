@@ -61,13 +61,20 @@ export default function CommunityImpact() {
               <p className="font-mono text-[10px] text-accent tracking-[0.22em] uppercase mb-4">Annual Sponsors</p>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  'Angel Fund for ALS Research',
-                  'Newburyport Education Foundation',
-                  "St. Jude Children's Hospital",
+                  { name: 'Angel Fund for ALS Research',    url: 'https://theangelfund.org' },
+                  { name: 'Newburyport Education Foundation', url: 'https://www.newburyportef.org' },
+                  { name: "St. Jude Children's Hospital",   url: 'https://www.stjude.org' },
                 ].map((org, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-gray-600 font-body">
+                  <li key={i} className="flex items-center gap-3 text-sm font-body">
                     <span className="w-8 h-px bg-accent/45 shrink-0" />
-                    {org}
+                    <a
+                      href={org.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-accent transition-colors duration-200 underline-offset-2 hover:underline"
+                    >
+                      {org.name}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -76,15 +83,22 @@ export default function CommunityImpact() {
               <p className="font-mono text-[10px] text-accent tracking-[0.22em] uppercase mb-4">Team Nonprofits</p>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  'UP for Women and Children — Louisville, KY',
-                  'Friends of MADACC — Milwaukee, WI',
-                  'United Way of Jackson County — Oregon',
-                  'Vanderburgh Humane Society — Indiana',
-                  'World Central Kitchen',
+                  { name: 'UP for Women and Children — Louisville, KY', url: 'https://www.uplouisville.org' },
+                  { name: 'Friends of MADACC — Milwaukee, WI',          url: 'https://www.friendsofmadacc.org' },
+                  { name: 'United Way of Jackson County — Oregon',       url: 'https://unitedwayofjacksoncounty.org' },
+                  { name: 'Vanderburgh Humane Society — Indiana',        url: 'https://www.vhslifesaver.org' },
+                  { name: 'World Central Kitchen',                       url: 'https://wck.org' },
                 ].map((org, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-gray-600 font-body">
+                  <li key={i} className="flex items-center gap-3 text-sm font-body">
                     <span className="w-8 h-px bg-primary/30 shrink-0" />
-                    {org}
+                    <a
+                      href={org.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-accent transition-colors duration-200 underline-offset-2 hover:underline"
+                    >
+                      {org.name}
+                    </a>
                   </li>
                 ))}
               </ul>
