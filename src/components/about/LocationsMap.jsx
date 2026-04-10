@@ -296,7 +296,7 @@ export default function LocationsMap() {
                 <h3 className="font-heading font-bold text-white text-base leading-tight mb-1">
                   MessinaTech Solutions PVT LTD
                 </h3>
-                <p className="font-body text-xs text-white/35 mb-4">sister company</p>
+                <p className="font-body text-xs text-white/35 mb-4">Sister Company</p>
                 <div className="w-8 h-[2px] bg-accent/40 mb-5" />
 
                 <div className="space-y-5">
@@ -314,23 +314,23 @@ export default function LocationsMap() {
               </div>
 
               <div
-                className="pt-4 space-y-2"
+                className="pt-4 space-y-2.5"
                 style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
               >
-                <a
-                  href={`mailto:${INDIA_CARD.email}`}
-                  className="flex items-center gap-2 font-mono text-[10px] text-white/40 hover:text-accent/70 transition-colors duration-200"
-                >
-                  <span className="text-accent/50">✉</span>
-                  {INDIA_CARD.email}
-                </a>
-                <a
-                  href={`tel:${INDIA_CARD.phone.replace(/\s/g, '')}`}
-                  className="flex items-center gap-2 font-mono text-[10px] text-white/40 hover:text-accent/70 transition-colors duration-200"
-                >
-                  <span className="text-accent/50">✆</span>
-                  {INDIA_CARD.phone}
-                </a>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-accent" style={{ boxShadow: '0 0 5px rgba(30,196,247,0.8)' }} />
+                  <span className="font-body text-xs text-white/50">
+                    Newburyport, MA
+                    <span className="ml-2 font-mono text-[9px] text-accent/60 uppercase tracking-widest">US HQ</span>
+                  </span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-accent" style={{ boxShadow: '0 0 5px rgba(30,196,247,0.8)' }} />
+                  <span className="font-body text-xs text-white/50">
+                    Hyderabad, Telangana
+                    <span className="ml-2 font-mono text-[9px] text-accent/60 uppercase tracking-widest">India</span>
+                  </span>
+                </div>
               </div>
             </div>
 
