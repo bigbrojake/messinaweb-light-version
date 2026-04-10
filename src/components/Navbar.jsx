@@ -44,7 +44,8 @@ const navLinks = [
     path: '/contact',
     label: 'Contact',
     sections: [
-      { key: 'protocol', label: 'Get in Touch'  },
+      { key: 'protocol',  label: 'Get in Touch'  },
+      { key: 'locations', label: 'Our Locations' },
     ],
   },
 ];
