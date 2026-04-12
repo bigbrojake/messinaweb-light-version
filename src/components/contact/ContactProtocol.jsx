@@ -1,7 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Send, CheckCircle, MapPin } from 'lucide-react';
+import { Send, CheckCircle, MapPin, Linkedin, Facebook } from 'lucide-react';
+
+const SOCIALS = [
+  { href: 'https://www.linkedin.com/company/messina-technology-solutions-llc', Icon: Linkedin, label: 'LinkedIn' },
+  { href: 'https://www.facebook.com/MessinaTechnologySolutions',               Icon: Facebook, label: 'Facebook' },
+];
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,6 +73,20 @@ export default function ContactProtocol() {
           </p>
 
           <div className="mt-4 flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              {SOCIALS.map(({ href, Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-8 h-8 rounded-full border border-primary/12 flex items-center justify-center text-primary/35 hover:text-primary hover:border-primary/30 transition-all duration-250"
+                >
+                  <Icon size={13} strokeWidth={1.75} />
+                </a>
+              ))}
+            </div>
             <div className="h-px bg-gradient-to-r from-primary/12 to-transparent" />
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-primary/6 border border-primary/10 flex items-center justify-center">
@@ -75,7 +94,8 @@ export default function ContactProtocol() {
               </div>
               <div>
                 <p className="font-mono text-[10px] text-primary/35 tracking-widest uppercase">Headquarters</p>
-                <p className="font-body text-sm text-textDark/60">Newburyport, MA</p>
+                <p className="font-body text-sm text-textDark/60">25 State Street, Suite 302</p>
+                <p className="font-body text-sm text-textDark/60">Newburyport, MA 01950</p>
               </div>
             </div>
           </div>

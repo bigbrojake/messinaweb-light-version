@@ -10,7 +10,7 @@ const team = [
     name: 'Josh Messina',
     role: 'Principal',
     img: '/team/josh.jpg',
-    bio: 'Three decades in consulting and staffing, built on an unwavering commitment to ethics, hard work, and community. Outside the office, Josh can be found cooking for his family, on the golf course, at a live music show, or locked into playoff hockey.',
+    bio: '29 years (and counting) in technology consulting and staffing — Josh founded MTS on a mission centered around relationships, trust, communication, and commitment to excellence. Outside the office, he can be found cooking for his family, on the golf course, at a live music show, or locked into playoff hockey.',
   },
   {
     name: 'Erin Mitchell',

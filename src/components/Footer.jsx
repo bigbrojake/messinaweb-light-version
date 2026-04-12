@@ -1,4 +1,10 @@
 import { Link } from 'react-router-dom';
+import { Linkedin, Facebook } from 'lucide-react';
+
+const SOCIALS = [
+  { href: 'https://www.linkedin.com/company/messina-technology-solutions-llc', Icon: Linkedin, label: 'LinkedIn' },
+  { href: 'https://www.facebook.com/MessinaTechnologySolutions',               Icon: Facebook, label: 'Facebook' },
+];
 
 export default function Footer() {
   return (
@@ -13,6 +19,20 @@ export default function Footer() {
           <p className="text-sm text-white/60 font-body max-w-xs leading-relaxed">
             Empowering organizations through innovative IT consulting, flexible resource staffing, and results-driven service delivery.
           </p>
+          <div className="flex items-center gap-2 mt-1">
+            {SOCIALS.map(({ href, Icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/40 transition-all duration-250"
+              >
+                <Icon size={13} strokeWidth={1.75} />
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Navigation */}
@@ -32,7 +52,8 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-0.5">
               <p className="text-xs font-mono uppercase tracking-widest text-accent/60">US HQ</p>
-              <p className="text-sm text-white/60">Newburyport, MA</p>
+              <p className="text-sm text-white/60">25 State Street, Suite 302</p>
+              <p className="text-sm text-white/60">Newburyport, MA 01950</p>
             </div>
             <div className="flex flex-col gap-0.5">
               <p className="text-xs font-mono uppercase tracking-widest text-accent/60">India</p>

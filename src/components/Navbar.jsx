@@ -1,6 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Linkedin, Facebook } from 'lucide-react';
+
+const SOCIALS = [
+  { href: 'https://www.linkedin.com/company/messina-technology-solutions-llc', Icon: Linkedin, label: 'LinkedIn' },
+  { href: 'https://www.facebook.com/MessinaTechnologySolutions',               Icon: Facebook, label: 'Facebook' },
+];
 
 const navLinks = [
   {
@@ -206,8 +211,25 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right spacer — balances logo on left so links stay truly centered */}
-        <div className="flex-1 hidden md:block" />
+        {/* Right — social icons balance the logo */}
+        <div className="flex-1 hidden md:flex items-center justify-end gap-1.5">
+          {SOCIALS.map(({ href, Icon, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-250 ${
+                onHeroGradient
+                  ? 'border-white/20 text-white/50 hover:text-white hover:border-white/45'
+                  : 'border-primary/12 text-textDark/35 hover:text-primary hover:border-primary/28'
+              }`}
+            >
+              <Icon size={13} strokeWidth={1.75} />
+            </a>
+          ))}
+        </div>
 
         {/* Mobile hamburger */}
         <button

@@ -18,7 +18,7 @@ const WORLD_GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m
 const INDIA_NUMERIC_ID = '356'; // ISO 3166-1 numeric for India
 
 const US_LOCATIONS = [
-  { name: 'Newburyport, MA',  coordinates: [-70.877, 42.812],  hq: true  },
+  { name: 'Newburyport, MA',  coordinates: [-70.877, 42.812],  hq: true, address: '25 State Street, Suite 302, Newburyport, MA 01950' },
   { name: 'Newbury, NH',      coordinates: [-71.997, 43.336],  hq: false },
   { name: 'Bridgewater, NJ',  coordinates: [-74.604, 40.593],  hq: false },
   { name: 'Louisville, KY',   coordinates: [-85.758, 38.252],  hq: false },
@@ -276,12 +276,17 @@ export default function LocationsMap() {
                         boxShadow: loc.hq ? '0 0 5px rgba(30,196,247,0.8)' : 'none',
                       }}
                     />
-                    <span className="font-body text-sm text-white/50">
-                      {loc.name}
-                      {loc.hq && (
-                        <span className="ml-2 font-mono text-[9px] text-accent/60 uppercase tracking-widest">HQ</span>
+                    <div>
+                      <span className="font-body text-sm text-white/50">
+                        {loc.name}
+                        {loc.hq && (
+                          <span className="ml-2 font-mono text-[9px] text-accent/60 uppercase tracking-widest">HQ</span>
+                        )}
+                      </span>
+                      {loc.address && (
+                        <p className="font-mono text-[9px] text-white/25 leading-relaxed mt-0.5">{loc.address}</p>
                       )}
-                    </span>
+                    </div>
                   </div>
                 ))}
               </div>
