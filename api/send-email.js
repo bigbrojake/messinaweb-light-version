@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const FROM = 'Messina Technology Solutions <noreply@messina-llc.com>';
+const FROM = 'Messina Technology Solutions <contact@messina-llc.com>';
 const TO   = 'jake@messina-llc.com';
 
 const INTENT_LABELS = {
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #e5eaf5; font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.1em;">Email</td>
                 <td style="padding: 10px 0; border-bottom: 1px solid #e5eaf5; font-size: 15px;">
-                  <a href="mailto:${email}" style="color: #0A348A;">${email}</a>
+                  ${email}
                 </td>
               </tr>
               <tr>
