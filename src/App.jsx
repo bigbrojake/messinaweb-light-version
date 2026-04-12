@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import ScrollToTop from './components/ScrollToTop';
 import AuroraBg from './components/AuroraBg';
 import Navbar from './components/Navbar';
@@ -30,6 +31,7 @@ function App() {
         <Footer />
       </div>
       <SectionNav />
+      <Analytics />
     </BrowserRouter>
   );
 }
