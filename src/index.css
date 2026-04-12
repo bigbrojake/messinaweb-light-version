@@ -80,27 +80,6 @@ body::after {
   animation: marquee-scroll 90s linear infinite;
 }
 
-/* ── Methodology Phase Visual Animations ── */
-@keyframes meth-outer-pulse {
-  0%, 100% { opacity: 0.22; transform: scale(1); }
-  50%       { opacity: 0.07; transform: scale(1.10); }
-}
-@keyframes meth-bar-breathe {
-  0%, 100% { opacity: 0.42; }
-  50%       { opacity: 0.82; }
-}
-@keyframes meth-node-light {
-  0%, 100% { opacity: 0.18; }
-  50%       { opacity: 0.95; }
-}
-@keyframes meth-spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-@keyframes meth-draw-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
 
 /* ── Hero Gradient Background ── */
 /* Layered radials on a navy base. Cyan floods the upper 2/3 of the hero,

@@ -28,9 +28,8 @@ const navLinks = [
     path: '/what-we-do',
     label: 'What We Do',
     sections: [
-      { key: 'staffing',    label: 'Resource Staffing'    },
-      { key: 'techstack',   label: 'Service Capabilities' },
-      { key: 'methodology', label: 'MTS Methodology'      },
+      { key: 'staffing',  label: 'Resource Staffing'    },
+      { key: 'techstack', label: 'Service Capabilities' },
     ],
   },
   {
