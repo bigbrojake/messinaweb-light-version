@@ -11,14 +11,14 @@ const quotes = [
     company: '',
   },
   {
-    text: "MTS executed our environment transition smoothly; their deep understanding of redundant architecture completely mitigated our risk footprint.",
-    role: 'Director of Infrastructure',
-    company: 'Global Healthcare Provider',
+    text: "From day one, the team at Messina Tech ensured I was set up for success — providing clear expectations, strong communication, and ongoing support throughout my engagement.",
+    role: 'Senior IT Consultant',
+    company: '',
   },
   {
-    text: "The level of precision in their automation rollout saved our engineering team thousands of hours. It wasn't just staffing; it was architectural leadership.",
-    role: 'VP of Information Technology',
-    company: 'National Retail Enterprise',
+    text: "What stands out most is their commitment to their people. Messina Technology Solutions fosters a collaborative environment where consultants feel valued, heard, and empowered to perform at their best.",
+    role: 'Infrastructure Specialist',
+    company: '',
   },
 ];
 
