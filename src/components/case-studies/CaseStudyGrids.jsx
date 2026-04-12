@@ -157,7 +157,7 @@ export default function CaseStudyGrids() {
     (disabled ? 'opacity-25 pointer-events-none' : '');
 
   return (
-    <section ref={sectionRef} className="pt-28 pb-24 px-6" style={{ background: '#050d1a' }}>
+    <section ref={sectionRef} className="pt-28 pb-24 px-6 bg-dark">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}

@@ -57,7 +57,7 @@ export default function LocationsMap() {
   }, []);
 
   return (
-    <section className="w-full py-20" style={{ background: '#050d1a' }}>
+    <section className="w-full py-20 bg-dark">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
