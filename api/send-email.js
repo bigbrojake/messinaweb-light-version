@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM = 'Messina Technology Solutions <contact@mail.messina-llc.com>';
-const TO   = 'recruiting@messina-llc.com';
+const TO   = 'jake@messina-llc.com';
 
 const INTENT_LABELS = {
   client:     'Client / Consulting Inquiry',
