@@ -21,9 +21,11 @@ export default function Methodology() {
   const containerRef   = useRef(null);
   const progressRef    = useRef(null);
   const navigatingRef  = useRef(false);
+  const snappingRef    = useRef(false);
   const [phase, setPhase] = useState(0);
 
-  // Track current phase from scroll + debounced manual snap
+  // Track current phase from scroll + debounced snap
+  // snappingRef guards against re-entrant snaps caused by GSAP-driven scroll events
   useEffect(() => {
     let snapTimer = null;
 
@@ -36,23 +38,25 @@ export default function Methodology() {
       );
       setPhase(idx);
 
-      // Snap to nearest step on scroll-end, but not during button navigation
-      if (!navigatingRef.current) {
+      // Snap to nearest step on scroll-end — blocked while a snap or button nav is already running
+      if (!navigatingRef.current && !snappingRef.current) {
         clearTimeout(snapTimer);
         snapTimer = setTimeout(() => {
           if (!containerRef.current) return;
-          const t   = containerRef.current.offsetTop;
-          const raw = (window.scrollY - t) / window.innerHeight;
+          const t      = containerRef.current.offsetTop;
+          const raw    = (window.scrollY - t) / window.innerHeight;
           const snapped = Math.min(steps.length - 1, Math.max(0, Math.round(raw)));
-          // Only if we're inside the methodology section
           if (window.scrollY >= t && window.scrollY <= t + (steps.length - 1) * window.innerHeight) {
+            snappingRef.current = true;
             gsap.to(window, {
-              scrollTo: { y: t + snapped * window.innerHeight, autoKill: true },
-              duration: 0.4,
+              scrollTo: { y: t + snapped * window.innerHeight },
+              duration: 0.55,
               ease: 'power3.out',
+              overwrite: true,
+              onComplete: () => { snappingRef.current = false; },
             });
           }
-        }, 150);
+        }, 250);
       }
     }
 
@@ -66,9 +70,10 @@ export default function Methodology() {
   function goToPhase(i) {
     if (!containerRef.current || i < 0 || i >= steps.length) return;
     navigatingRef.current = true;
+    snappingRef.current   = false; // button nav takes priority over any pending snap
     gsap.to(window, {
-      scrollTo: { y: containerRef.current.offsetTop + i * window.innerHeight, autoKill: false },
-      duration: 0.6,
+      scrollTo: { y: containerRef.current.offsetTop + i * window.innerHeight },
+      duration: 0.65,
       ease: 'power3.out',
       overwrite: true,
       onComplete: () => {
@@ -78,7 +83,7 @@ export default function Methodology() {
     });
   }
 
-  // GSAP panel transitions
+  // GSAP panel transitions — scrub reduced so panels catch up quickly after snap
   useEffect(() => {
     const ctx = gsap.context(() => {
       const panels = Array.from(containerRef.current.querySelectorAll('.mstep'));
@@ -89,7 +94,7 @@ export default function Methodology() {
           trigger: containerRef.current,
           start: 'top top',
           end: `+=${(steps.length - 1) * 100}%`,
-          scrub: 0.8,
+          scrub: 0.45,
           pin: false,
         },
       });
@@ -97,9 +102,9 @@ export default function Methodology() {
       tl.to(progressRef.current, { scaleX: 1, ease: 'none', duration: steps.length - 1 }, 0);
 
       panels.slice(1).forEach((panel, i) => {
-        tl.to(panel,     { xPercent: 0,   ease: 'back.out(1.5)', duration: 1    }, i);
-        tl.to(panels[i], { opacity: 0,    ease: 'power3.in',     duration: 0.28 }, i);
-        tl.to(panels[i], { xPercent: -20, ease: 'power2.in',     duration: 0.6  }, i);
+        tl.to(panel,     { xPercent: 0,   ease: 'power3.out', duration: 1    }, i);
+        tl.to(panels[i], { opacity: 0,    ease: 'power3.in',  duration: 0.28 }, i);
+        tl.to(panels[i], { xPercent: -20, ease: 'power2.in',  duration: 0.6  }, i);
       });
     }, containerRef);
     return () => ctx.revert();
