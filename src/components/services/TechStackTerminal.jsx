@@ -319,6 +319,24 @@ export default function TechStackTerminal() {
           </div>
         </div>
       </div>
+
+      {/* CTA footer */}
+      <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-6 pt-10 border-t border-primary/8">
+        <div>
+          <p className="font-heading font-semibold text-textDark text-lg">See something that fits your environment?</p>
+          <p className="font-body text-sm text-textDark/45 mt-1">
+            Most engagements start with a single conversation. Let's scope the right approach together.
+          </p>
+        </div>
+        <a
+          href="/contact"
+          className="magnetic-btn inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-primary text-white font-heading font-semibold text-sm shadow-brand-md hover:shadow-brand-lg transition-shadow duration-300 shrink-0"
+        >
+          Start the Conversation
+          <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-xs">→</span>
+        </a>
+      </div>
+
     </section>
   );
 }
