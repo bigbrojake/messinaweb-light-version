@@ -6,6 +6,9 @@ import { SOCIALS } from '../../constants/socials';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const inputCls = 'peer w-full bg-white border border-primary/10 rounded-xl px-4 py-3.5 text-textDark text-sm focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(30,196,247,0.12)] transition-all placeholder-transparent font-body';
+const labelCls = 'absolute left-4 top-3.5 text-gray-400 text-sm font-body transition-all duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:top-3.5 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-accent peer-focus:bg-[#F7FAFF] peer-focus:px-1 peer-valid:-top-2.5 peer-valid:text-xs peer-valid:bg-[#F7FAFF] peer-valid:px-1';
+
 export default function ContactProtocol() {
   const [status,  setStatus]  = useState('idle');
   const [error,   setError]   = useState('');
@@ -123,12 +126,12 @@ export default function ContactProtocol() {
                   <input
                     type="text" id="name" required
                     value={fields.name} onChange={handleChange}
-                    className="peer w-full bg-white border border-primary/10 rounded-xl px-4 py-3.5 text-textDark text-sm focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(30,196,247,0.12)] transition-all placeholder-transparent font-body"
+                    className={inputCls}
                     placeholder="Name"
                   />
                   <label
                     htmlFor="name"
-                    className="absolute left-4 top-3.5 text-gray-400 text-sm font-body transition-all duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:top-3.5 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-accent peer-focus:bg-[#F7FAFF] peer-focus:px-1 peer-valid:-top-2.5 peer-valid:text-xs peer-valid:bg-[#F7FAFF] peer-valid:px-1"
+                    className={labelCls}
                   >
                     Full Name
                   </label>
@@ -138,12 +141,12 @@ export default function ContactProtocol() {
                   <input
                     type="email" id="email" required
                     value={fields.email} onChange={handleChange}
-                    className="peer w-full bg-white border border-primary/10 rounded-xl px-4 py-3.5 text-textDark text-sm focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(30,196,247,0.12)] transition-all placeholder-transparent font-body"
+                    className={inputCls}
                     placeholder="Email"
                   />
                   <label
                     htmlFor="email"
-                    className="absolute left-4 top-3.5 text-gray-400 text-sm font-body transition-all duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:top-3.5 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-accent peer-focus:bg-[#F7FAFF] peer-focus:px-1 peer-valid:-top-2.5 peer-valid:text-xs peer-valid:bg-[#F7FAFF] peer-valid:px-1"
+                    className={labelCls}
                   >
                     Email Address
                   </label>
@@ -166,12 +169,12 @@ export default function ContactProtocol() {
                   <textarea
                     id="message" required rows="4"
                     value={fields.message} onChange={handleChange}
-                    className="peer w-full bg-white border border-primary/10 rounded-xl px-4 py-3.5 text-textDark text-sm focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(30,196,247,0.12)] transition-all placeholder-transparent resize-none font-body"
+                    className={`${inputCls} resize-none`}
                     placeholder="Message"
                   />
                   <label
                     htmlFor="message"
-                    className="absolute left-4 top-3.5 text-gray-400 text-sm font-body transition-all duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:top-3.5 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-accent peer-focus:bg-[#F7FAFF] peer-focus:px-1 peer-valid:-top-2.5 peer-valid:text-xs peer-valid:bg-[#F7FAFF] peer-valid:px-1"
+                    className={labelCls}
                   >
                     Your Message
                   </label>

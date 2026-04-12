@@ -63,7 +63,7 @@ export default function ExecutiveTestimonials() {
               </span>
 
               {/* Quote text */}
-              <p className="font-heading italic text-xl md:text-2xl text-textDark leading-relaxed flex-1" style={{ fontWeight: 400 }}>
+              <p className="font-heading font-normal italic text-xl md:text-2xl text-textDark leading-relaxed flex-1">
                 {q.text}
               </p>
 

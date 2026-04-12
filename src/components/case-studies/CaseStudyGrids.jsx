@@ -187,7 +187,7 @@ export default function CaseStudyGrids() {
             }}
           >
             {/* Image strip */}
-            <div className="relative w-full overflow-hidden" style={{ height: '220px' }}>
+            <div className="relative w-full overflow-hidden h-[220px]">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
@@ -218,7 +218,7 @@ export default function CaseStudyGrids() {
             </div>
 
             {/* Content — fixed height prevents layout shift between cards */}
-            <div className="px-8 pt-6 pb-8" style={{ height: '380px', overflow: 'hidden' }}>
+            <div className="px-8 pt-6 pb-8 h-[380px] overflow-hidden">
               {/* Title + case number */}
               <div className="flex items-start justify-between gap-4 mb-6">
                 <h3 className="font-heading font-bold text-xl text-white leading-tight">
