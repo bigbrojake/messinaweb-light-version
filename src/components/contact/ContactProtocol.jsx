@@ -6,8 +6,14 @@ import { Send, CheckCircle, MapPin } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ContactProtocol() {
-  const [status, setStatus] = useState('idle');
+  const [status,  setStatus]  = useState('idle');
+  const [error,   setError]   = useState('');
+  const [fields,  setFields]  = useState({ name: '', email: '', intent: '', message: '' });
   const containerRef = useRef(null);
+
+  const handleChange = (e) => {
+    setFields(f => ({ ...f, [e.target.id]: e.target.value }));
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -23,10 +29,23 @@ export default function ContactProtocol() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('submitting');
-    setTimeout(() => setStatus('success'), 1500);
+    setError('');
+    try {
+      const res = await fetch('/api/send-email', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(fields),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+      setStatus('success');
+    } catch (err) {
+      setError(err.message);
+      setStatus('idle');
+    }
   };
 
   return (
@@ -87,6 +106,7 @@ export default function ContactProtocol() {
                 <div className="form-element relative">
                   <input
                     type="text" id="name" required
+                    value={fields.name} onChange={handleChange}
                     className="peer w-full bg-white border border-primary/10 rounded-xl px-4 py-3.5 text-textDark text-sm focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(30,196,247,0.12)] transition-all placeholder-transparent font-body"
                     placeholder="Name"
                   />
@@ -101,6 +121,7 @@ export default function ContactProtocol() {
                 <div className="form-element relative">
                   <input
                     type="email" id="email" required
+                    value={fields.email} onChange={handleChange}
                     className="peer w-full bg-white border border-primary/10 rounded-xl px-4 py-3.5 text-textDark text-sm focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(30,196,247,0.12)] transition-all placeholder-transparent font-body"
                     placeholder="Email"
                   />
@@ -114,7 +135,8 @@ export default function ContactProtocol() {
 
                 <div className="form-element">
                   <select
-                    id="intent" required defaultValue=""
+                    id="intent" required
+                    value={fields.intent} onChange={handleChange}
                     className="w-full bg-white border border-primary/10 rounded-xl px-4 py-3.5 text-textDark text-sm focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(30,196,247,0.12)] transition-all appearance-none font-body [&>option]:bg-white [&>option]:text-textDark"
                   >
                     <option value="" disabled>Intent — select one</option>
@@ -127,6 +149,7 @@ export default function ContactProtocol() {
                 <div className="form-element relative">
                   <textarea
                     id="message" required rows="4"
+                    value={fields.message} onChange={handleChange}
                     className="peer w-full bg-white border border-primary/10 rounded-xl px-4 py-3.5 text-textDark text-sm focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(30,196,247,0.12)] transition-all placeholder-transparent resize-none font-body"
                     placeholder="Message"
                   />
@@ -137,6 +160,10 @@ export default function ContactProtocol() {
                     Your Message
                   </label>
                 </div>
+
+                {error && (
+                  <p className="text-sm text-red-500 font-body -mt-2">{error}</p>
+                )}
 
                 <button
                   type="submit"

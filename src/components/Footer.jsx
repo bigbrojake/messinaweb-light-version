@@ -48,14 +48,6 @@ export default function Footer() {
           &copy; 2026 Messina Technology Solutions
         </p>
 
-        {/* System Operational */}
-        <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-[2rem] border border-white/10">
-          <span className="relative flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-          </span>
-          <span className="text-xs font-mono text-white/70 uppercase">System Operational</span>
-        </div>
       </div>
     </footer>
   );
