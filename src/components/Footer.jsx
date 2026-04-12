@@ -1,10 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Linkedin, Facebook } from 'lucide-react';
-
-const SOCIALS = [
-  { href: 'https://www.linkedin.com/company/messina-technology-solutions-llc', Icon: Linkedin, label: 'LinkedIn' },
-  { href: 'https://www.facebook.com/MessinaTechnologySolutions',               Icon: Facebook, label: 'Facebook' },
-];
+import { SOCIALS } from '../constants/socials';
 
 export default function Footer() {
   return (

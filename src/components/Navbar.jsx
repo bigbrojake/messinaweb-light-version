@@ -1,11 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown, Linkedin, Facebook } from 'lucide-react';
-
-const SOCIALS = [
-  { href: 'https://www.linkedin.com/company/messina-technology-solutions-llc', Icon: Linkedin, label: 'LinkedIn' },
-  { href: 'https://www.facebook.com/MessinaTechnologySolutions',               Icon: Facebook, label: 'Facebook' },
-];
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { SOCIALS } from '../constants/socials';
 
 const navLinks = [
   {

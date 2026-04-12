@@ -1,12 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Send, CheckCircle, MapPin, Linkedin, Facebook } from 'lucide-react';
-
-const SOCIALS = [
-  { href: 'https://www.linkedin.com/company/messina-technology-solutions-llc', Icon: Linkedin, label: 'LinkedIn' },
-  { href: 'https://www.facebook.com/MessinaTechnologySolutions',               Icon: Facebook, label: 'Facebook' },
-];
+import { Send, CheckCircle, MapPin } from 'lucide-react';
+import { SOCIALS } from '../../constants/socials';
 
 gsap.registerPlugin(ScrollTrigger);
 
