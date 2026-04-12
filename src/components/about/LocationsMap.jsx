@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps';
 
 // Generates SVG points string for a 5-pointed star centered at 0,0
@@ -48,6 +48,13 @@ const INDIA_CARD = {
 
 export default function LocationsMap() {
   const [tooltip, setTooltip] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   return (
     <section className="w-full py-20" style={{ background: '#050d1a' }}>
@@ -170,7 +177,7 @@ export default function LocationsMap() {
             <div
               className="absolute bottom-0 right-0 rounded-tl-[1.5rem] overflow-hidden"
               style={{
-                width: 280,
+                width: isMobile ? 150 : 280,
                 background: 'rgba(6,14,32,0.92)',
                 border: '1px solid rgba(30,196,247,0.18)',
                 borderBottom: 'none',

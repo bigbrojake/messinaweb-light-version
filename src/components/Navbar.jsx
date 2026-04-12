@@ -221,7 +221,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`pointer-events-auto fixed inset-x-0 top-[76px] mx-4 rounded-[2rem] bg-white/96 backdrop-blur-2xl border border-gray-200 shadow-[0_8px_32px_rgba(0,0,0,0.10)] md:hidden
+        className={`pointer-events-auto fixed inset-x-0 top-[76px] mx-4 rounded-[2rem] bg-white backdrop-blur-2xl border border-gray-200 shadow-[0_8px_32px_rgba(0,0,0,0.10)] md:hidden
           transition-all duration-300 ease-magnetic origin-top overflow-hidden
           ${mobileOpen ? 'opacity-100 scale-y-100 translate-y-0' : 'opacity-0 scale-y-95 -translate-y-2 pointer-events-none'}`}
       >

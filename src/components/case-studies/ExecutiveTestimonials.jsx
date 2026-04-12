@@ -6,6 +6,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const quotes = [
   {
+    text: "I've known Josh for many years — he and his team are outstanding to work with: professional, reliable and truly trustworthy. Messina Technology Solutions will always be my go-to partner.",
+    role: 'Advisory Infrastructure Consultant',
+    company: '',
+  },
+  {
     text: "MTS executed our environment transition smoothly; their deep understanding of redundant architecture completely mitigated our risk footprint.",
     role: 'Director of Infrastructure',
     company: 'Global Healthcare Provider',
@@ -43,7 +48,7 @@ export default function ExecutiveTestimonials() {
           <span className="font-mono text-[11px] tracking-[0.28em] text-accent uppercase">Executive Testimonials</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {quotes.map((q, i) => (
             <div
               key={i}
@@ -65,7 +70,7 @@ export default function ExecutiveTestimonials() {
               {/* Attribution */}
               <div className="pt-5 border-t border-primary/8">
                 <p className="font-mono text-sm font-bold text-accent tracking-widest uppercase">{q.role}</p>
-                <p className="font-body text-sm text-gray-400 mt-1">{q.company}</p>
+                {q.company && <p className="font-body text-sm text-gray-400 mt-1">{q.company}</p>}
               </div>
             </div>
           ))}

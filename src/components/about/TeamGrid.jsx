@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const team = [
+  // Row 1
   {
     name: 'Josh Messina',
     role: 'Principal',
@@ -23,6 +24,7 @@ const team = [
     img: '/team/john.jpg',
     bio: 'A technology professional with 30+ years in enterprise infrastructure, John has a talent for turning complex technical ideas into real-world outcomes at scale. Before IT, he was a commercial pilot — these days he trades the cockpit for the Jersey Shore, tournament pool, and what he calls a very bad game of golf.',
   },
+  // Row 2
   {
     name: 'Maggie Ellison',
     role: 'Resource Relationship Director',
@@ -30,17 +32,25 @@ const team = [
     bio: "With 25 years across HR and accounting — from nonprofits to universities to staffing — Maggie brings warmth and depth to every relationship she manages. She's been part of the Messina family for nearly two years and is happiest somewhere outside, ideally on a lanai.",
   },
   {
-    name: 'William Killebrew',
-    role: 'Workforce Operations Manager',
-    img: '/team/will.png',
-    imgPosition: 'center center',
-    bio: "A military brat who's lived across Europe and the U.S., Will brings 17+ years of labor management experience and a people-first mindset to everything he does. He chases Phish concerts coast to coast with his wife, bleeds Cardinal red, and shares his home with two cats — Manny and Moony, aka the Man 'n the Moon.",
+    name: 'Kiran Kilari',
+    role: 'Director, Delivery Services',
+    img: '/team/kiran.jpg',
+    bio: "With over a decade of experience and more than 2.5 years at Messina, Kiran has transformed the search for talent into a finely tuned art form. When he isn't optimizing pipelines, you'll find him channeling that high-speed energy into his love for cars, motorcycles, and his next travel adventure.",
   },
   {
     name: 'Keri Burnell',
     role: 'Director of Business Insights & Analytics',
     img: '/team/keri.jpg',
     bio: 'Keri drives automation and efficiency at Messina, making complex data clear and genuinely useful. A Wisconsin-proud Packers shareholder and proud dog mom — may your queries be fast and your dashboards honest.',
+  },
+  // Row 3
+  {
+    name: 'William Killebrew',
+    role: 'Workforce Operations Manager',
+    img: '/team/will.png',
+    imgPosition: 'center center',
+    colStart: true,
+    bio: "A military brat who's lived across Europe and the U.S., Will brings 17+ years of operational management experience and a people-first mindset to everything he does. He chases Phish concerts coast to coast with his wife, bleeds Cardinal red, and shares his home with two cats — Manny and Moony, aka the Man 'n the Moon.",
   },
 ];
 
@@ -78,7 +88,7 @@ export default function TeamGrid() {
         {team.map((member, i) => (
           <div
             key={i}
-            className="team-card group relative w-full overflow-hidden rounded-[2rem] cursor-pointer border border-gray-200 hover:border-accent/30 hover:shadow-[0_0_20px_rgba(30,196,247,0.12),0_8px_32px_rgba(10,52,138,0.12)] transition-all duration-500 card-inertia"
+            className={`team-card group relative w-full overflow-hidden rounded-[2rem] cursor-pointer border border-gray-200 hover:border-accent/30 hover:shadow-[0_0_20px_rgba(30,196,247,0.12),0_8px_32px_rgba(10,52,138,0.12)] transition-all duration-500 card-inertia${member.colStart ? ' md:col-start-2' : ''}`}
             style={{ height: '480px' }}
           >
             {/* Corner bracket */}

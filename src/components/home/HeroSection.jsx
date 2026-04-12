@@ -44,6 +44,14 @@ export default function HeroSection() {
   const [poolIndex,  setPoolIndex]  = useState(0);
   const [phase,      setPhase]      = useState('typing');
   const [started,    setStarted]    = useState(false);
+  const [isMobile,   setIsMobile]   = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   // Initial delay before first character
   useEffect(() => {
@@ -129,8 +137,8 @@ export default function HeroSection() {
         }
       `}</style>
 
-      {/* Connected node field */}
-      <NodeField />
+      {/* Connected node field — desktop only */}
+      {!isMobile && <NodeField />}
 
       {/* Depth vignette */}
       <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_120%_80%_at_15%_20%,rgba(10,52,138,0.30),transparent)] pointer-events-none" />
