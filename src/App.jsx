@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import ScrollToTop from './components/ScrollToTop';
 import AuroraBg from './components/AuroraBg';
 import Navbar from './components/Navbar';
@@ -32,6 +33,7 @@ function App() {
       </div>
       <SectionNav />
       <Analytics />
+      <SpeedInsights />
     </BrowserRouter>
   );
 }
