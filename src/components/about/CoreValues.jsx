@@ -67,7 +67,7 @@ export default function CoreValues() {
             Operational Axioms
           </span>
           <h2 className="text-4xl md:text-5xl font-heading font-black text-white leading-[1.08]">
-            The Principles<br />We Ship By
+            The Principles<br />We Stand By
           </h2>
         </div>
 
