@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronDown } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -125,7 +124,6 @@ const clusters = [
 
 export default function TechStackTerminal() {
   const [activeCluster, setActiveCluster] = useState(0);
-  const [openService, setOpenService]     = useState(null);
   const sectionRef = useRef(null);
   const panelRef   = useRef(null);
 
@@ -158,11 +156,6 @@ export default function TechStackTerminal() {
   function selectCluster(idx) {
     if (idx === activeCluster) return;
     setActiveCluster(idx);
-    setOpenService(null);
-  }
-
-  function toggleService(idx) {
-    setOpenService(openService === idx ? null : idx);
   }
 
   const cluster = clusters[activeCluster];
@@ -180,7 +173,7 @@ export default function TechStackTerminal() {
             Deep Expertise.<br />Flexible Delivery.
           </h2>
         </div>
-        <p className="font-body text-base text-textDark/50 max-w-sm leading-relaxed">
+        <p className="font-body text-base text-textDark/75 max-w-sm leading-relaxed">
           With 25+ years of enterprise IT experience, we bring the right solution for your environment, not a one-size-fits-all approach.
         </p>
       </div>
@@ -196,7 +189,7 @@ export default function TechStackTerminal() {
               className={`shrink-0 px-4 py-2 rounded-full text-sm font-heading font-semibold transition-all duration-250 border ${
                 activeCluster === i
                   ? 'bg-primary text-white border-primary shadow-brand'
-                  : 'bg-white text-textDark/55 border-primary/12 hover:border-primary/25 hover:text-textDark'
+                  : 'bg-white text-textDark/75 border-primary/12 hover:border-primary/25 hover:text-textDark'
               }`}
             >
               {c.label}
@@ -217,7 +210,7 @@ export default function TechStackTerminal() {
                   className={`w-full text-left px-4 py-3.5 rounded-xl transition-all duration-250 relative ${
                     activeCluster === i
                       ? 'bg-primary/[0.05] text-primary'
-                      : 'text-textDark/45 hover:text-textDark/70 hover:bg-primary/[0.025]'
+                      : 'text-textDark/75 hover:text-textDark hover:bg-primary/[0.025]'
                   }`}
                 >
                   {activeCluster === i && (
@@ -227,7 +220,7 @@ export default function TechStackTerminal() {
                     {c.label}
                   </span>
                   <span className={`font-mono text-[10px] tracking-wide mt-0.5 block ${
-                    activeCluster === i ? 'text-accent/70' : 'text-textDark/25'
+                    activeCluster === i ? 'text-accent/70' : 'text-textDark/55'
                   }`}>
                     {c.services.length} {c.services.length === 1 ? 'service' : 'services'}
                   </span>
@@ -247,73 +240,36 @@ export default function TechStackTerminal() {
               <h3 className="font-heading font-bold text-2xl text-textDark mb-2">
                 {cluster.label}
               </h3>
-              <p className="font-body text-sm text-textDark/50 leading-relaxed max-w-xl">
+              <p className="font-body text-sm text-textDark/75 leading-relaxed max-w-xl">
                 {cluster.shortDesc}
               </p>
             </div>
 
-            {/* Service accordion rows */}
+            {/* Service rows */}
             <div className="flex flex-col">
-              {cluster.services.map((svc, i) => {
-                const isOpen = openService === i;
-                return (
-                  <div key={svc.label} className="border-b border-primary/8 last:border-b-0">
-
-                    {/* Row header */}
-                    <button
-                      onClick={() => toggleService(i)}
-                      className="w-full flex items-start justify-between gap-6 py-6 text-left group"
-                    >
-                      <div className="flex-1 min-w-0">
-                        <h4 className={`font-heading font-semibold text-base mb-1.5 transition-colors duration-200 ${
-                          isOpen ? 'text-primary' : 'text-textDark group-hover:text-primary/80'
-                        }`}>
-                          {svc.label}
-                        </h4>
-                        {!isOpen && (
-                          <p className="font-body text-sm text-textDark/40 leading-snug line-clamp-1 pr-4">
-                            {svc.desc}
-                          </p>
-                        )}
-                      </div>
-                      <div className={`w-8 h-8 rounded-full border shrink-0 flex items-center justify-center mt-0.5 transition-all duration-250 ${
-                        isOpen
-                          ? 'border-accent bg-accent/10 text-accent'
-                          : 'border-primary/15 text-primary/30 group-hover:border-primary/35 group-hover:text-primary/55'
-                      }`}>
-                        <ChevronDown
-                          size={14}
-                          className={`transition-transform duration-250 ${isOpen ? 'rotate-180' : ''}`}
-                        />
-                      </div>
-                    </button>
-
-                    {/* Expanded detail */}
-                    <div style={{
-                      maxHeight: isOpen ? '400px' : '0',
-                      overflow: 'hidden',
-                      transition: 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                    }}>
-                      <div className="pb-8 pr-14">
-                        <p className="font-body text-sm text-textDark/60 leading-relaxed mb-5">
-                          {svc.desc}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {svc.chips.map(chip => (
-                            <span
-                              key={chip}
-                              className="px-3 py-1 rounded-full border border-primary/12 bg-primary/[0.04] font-mono text-[11px] text-primary/70 tracking-wide"
-                            >
-                              {chip}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
+              {cluster.services.map((svc) => (
+                <div
+                  key={svc.label}
+                  className="py-8 border-b border-primary/10 last:border-b-0"
+                >
+                  <h4 className="font-heading font-semibold text-base text-textDark mb-2.5">
+                    {svc.label}
+                  </h4>
+                  <p className="font-body text-sm text-textDark/75 leading-relaxed mb-4 max-w-3xl">
+                    {svc.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {svc.chips.map(chip => (
+                      <span
+                        key={chip}
+                        className="px-2.5 py-1 rounded-full border border-primary/15 bg-primary/[0.02] font-mono text-[10px] text-primary/75 tracking-wide"
+                      >
+                        {chip}
+                      </span>
+                    ))}
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
 
           </div>
@@ -324,7 +280,7 @@ export default function TechStackTerminal() {
       <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-6 pt-10 border-t border-primary/8">
         <div>
           <p className="font-heading font-semibold text-textDark text-lg">See something that fits your environment?</p>
-          <p className="font-body text-sm text-textDark/45 mt-1">
+          <p className="font-body text-sm text-textDark/75 mt-1">
             Most engagements start with a single conversation. Let's scope the right approach together.
           </p>
         </div>
