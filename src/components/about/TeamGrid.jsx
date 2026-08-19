@@ -46,7 +46,7 @@ const team = [
   // Row 3
   {
     name: 'William Killebrew',
-    role: 'Workforce Operations Manager',
+    role: 'Revenue Operations & Payroll Manager',
     img: '/team/will.png',
     imgPosition: 'center center',
     colStart: true,
