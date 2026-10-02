@@ -21,7 +21,7 @@ const US_LOCATIONS = [
   { name: 'Newburyport, MA',  coordinates: [-70.877, 42.812],  hq: true, address: '25 State Street, Suite 302, Newburyport, MA 01950' },
   { name: 'Newbury, NH',      coordinates: [-71.997, 43.336],  hq: false },
   { name: 'Bridgewater, NJ',  coordinates: [-74.604, 40.593],  hq: false },
-  { name: 'Louisville, KY',   coordinates: [-85.758, 38.252],  hq: false },
+  { name: 'Waukesha, WI',     coordinates: [-88.235, 43.015],  hq: false },
   { name: 'Evansville, IN',   coordinates: [-87.555, 37.974],  hq: false },
   { name: 'Ashland, OR',      coordinates: [-122.709, 42.194], hq: false },
 ];
