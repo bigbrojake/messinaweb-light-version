@@ -12,7 +12,7 @@ const labelCls = 'absolute left-4 top-3.5 text-gray-400 text-sm font-body transi
 export default function ContactProtocol() {
   const [status,  setStatus]  = useState('idle');
   const [error,   setError]   = useState('');
-  const [fields,  setFields]  = useState({ name: '', email: '', intent: '', message: '' });
+  const [fields,  setFields]  = useState({ name: '', email: '', intent: '', message: '', website: '' });
   const containerRef = useRef(null);
 
   const handleChange = (e) => {
@@ -35,6 +35,7 @@ export default function ContactProtocol() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (status === 'submitting') return;
     setStatus('submitting');
     setError('');
     try {
@@ -43,7 +44,7 @@ export default function ContactProtocol() {
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify(fields),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || 'Something went wrong.');
       setStatus('success');
     } catch (err) {
@@ -122,9 +123,14 @@ export default function ContactProtocol() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
+                  <label htmlFor="website">Leave this field empty</label>
+                  <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off"
+                    value={fields.website} onChange={handleChange} />
+                </div>
                 <div className="form-element relative">
                   <input
-                    type="text" id="name" required
+                    type="text" id="name" required maxLength={150} autoComplete="name"
                     value={fields.name} onChange={handleChange}
                     className={inputCls}
                     placeholder="Name"
@@ -139,7 +145,7 @@ export default function ContactProtocol() {
 
                 <div className="form-element relative">
                   <input
-                    type="email" id="email" required
+                    type="email" id="email" required maxLength={254} autoComplete="email"
                     value={fields.email} onChange={handleChange}
                     className={inputCls}
                     placeholder="Email"
@@ -167,7 +173,7 @@ export default function ContactProtocol() {
 
                 <div className="form-element relative">
                   <textarea
-                    id="message" required rows="4"
+                    id="message" required rows="4" maxLength={10000}
                     value={fields.message} onChange={handleChange}
                     className={`${inputCls} resize-none`}
                     placeholder="Message"
@@ -181,7 +187,7 @@ export default function ContactProtocol() {
                 </div>
 
                 {error && (
-                  <p className="text-sm text-red-500 font-body -mt-2">{error}</p>
+                  <p role="alert" className="text-sm text-red-500 font-body -mt-2">{error}</p>
                 )}
 
                 <button
